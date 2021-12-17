@@ -1,0 +1,10 @@
+{
+    "login" : "Login",
+    "loginBtn" : "Login",
+    "register" : "Register",
+    "email" : "Email",
+    "emailHint" : "Email",
+    "password" : "Password",
+    "passwordHint" : "Password",
+    "welcome" : "WELCOME"
+}

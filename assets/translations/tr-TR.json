@@ -1,0 +1,11 @@
+{
+    "login" : "Giriş",
+    "loginBtn" : "Giriş Yap",
+    "register" : "Kayıt",
+    "registerBtn" : "Kayıt Ol",
+    "email" : "Email",
+    "emailHint" : "Email Adresiniz",
+    "password" : "Şifre",
+    "passwordHint" : "Şifreniz",
+    "welcome" : "HOSGELDINIZ"
+}
