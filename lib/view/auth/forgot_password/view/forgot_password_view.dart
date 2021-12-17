@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ForgotPasswordView extends StatefulWidget {
-  const ForgotPasswordView({ Key? key }) : super(key: key);
+  const ForgotPasswordView({Key? key}) : super(key: key);
 
   @override
   _ForgotPasswordViewState createState() => _ForgotPasswordViewState();
@@ -10,8 +10,10 @@ class ForgotPasswordView extends StatefulWidget {
 class _ForgotPasswordViewState extends State<ForgotPasswordView> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-
+    return const Scaffold(
+      body: Center(
+        child: Text('FORGOT PAGE'),
+      ),
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:ecommerce/core/constants/strings_manager.dart';
+import 'package:ecommerce/core/constants/strings/strings_manager.dart';
 import 'package:ecommerce/view/auth/forgot_password/view/forgot_password_view.dart';
 import 'package:ecommerce/view/auth/login/view/login_view.dart';
 import 'package:ecommerce/view/auth/signup/view/signup_view.dart';

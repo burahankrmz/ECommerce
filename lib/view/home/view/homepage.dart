@@ -2,7 +2,7 @@ import 'package:ecommerce/core/init/color/color_manager.dart';
 
 import '../../../app/app_prefs.dart';
 import '../../../app/di.dart';
-import '../../../core/constants/strings_manager.dart';
+import '../../../core/constants/strings/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';

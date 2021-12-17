@@ -10,7 +10,7 @@ class SignUpView extends StatefulWidget {
 class _SignUpViewState extends State<SignUpView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.amberAccent,
       body: Center(
         child: Text('ALLOOOO'),
