@@ -8,4 +8,15 @@ class AppStrings {
   static const String password = "password";
   static const String passwordHint = "passwordHint";
   static const String welcome = "welcome";
+  static const String undefinedRoute = "Page Not Found";
+  static const String signup = "signup";
+  static const String name = "name";
+  static const String alreadyAccount = "alreadyAccount";
+  static const String signupBtn = "signupBtn";
+  static const String orSignUp = "orSignUp";
+  static const String forgotPassword = "forgotPassword";
+  static const String orlogin = "orlogin";
+  static const String sendBtn = "sendBtn";
+  static const String forgotText = "forgotText";
+  static const String emailValid = "emailValid";
 }

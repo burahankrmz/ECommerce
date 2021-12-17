@@ -1,9 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce/core/init/routes/routes_manager.dart';
+import 'package:ecommerce/core/init/theme/theme_manager.dart';
 import 'package:flutter/material.dart';
 
 import 'app_prefs.dart';
 import 'di.dart';
-import '../view/home/view/homepage.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp._internal();
@@ -31,7 +32,9 @@ class _MyAppState extends State<MyApp> {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      home: const HomePage(),
+      theme: getLightTheme(),
+      onGenerateRoute: RouteGenerator.getRoute,
+      initialRoute: Routes.loginRoute,
     );
   }
 }

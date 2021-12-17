@@ -1,10 +1,20 @@
 {
-    "login" : "Login",
-    "loginBtn" : "Login",
-    "register" : "Register",
-    "email" : "Email",
-    "emailHint" : "Email",
-    "password" : "Password",
-    "passwordHint" : "Password",
-    "welcome" : "WELCOME"
+    "login": "Login",
+    "loginBtn": "LOGIN",
+    "register": "Register",
+    "email": "Email",
+    "emailHint": "Email",
+    "password": "Password",
+    "passwordHint": "Password",
+    "welcome": "WELCOME",
+    "signup": "Sign up",
+    "name": "Name",
+    "alreadyAccount": "Already have an account?",
+    "signupBtn": "SIGN UP",
+    "orSignUp": "Or sign up with social account",
+    "forgotPassword": "Forgot your password?",
+    "orlogin": "Or login with social account",
+    "sendBtn": "SEND",
+    "forgotText": "Please, enter your email adress. You will receive a link to create a new password via email.",
+    "emailValid": "Not a valid email adress. Should be your@gmail.com"
 }

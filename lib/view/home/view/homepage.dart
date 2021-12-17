@@ -1,3 +1,5 @@
+import 'package:ecommerce/core/init/color/color_manager.dart';
+
 import '../../../app/app_prefs.dart';
 import '../../../app/di.dart';
 import '../../../core/constants/strings_manager.dart';
@@ -25,7 +27,10 @@ class _HomePageState extends State<HomePage> {
               _appPrefences.setLanguageChanged();
               Phoenix.rebirth(context);
             },
-            icon: const Icon(Icons.language),
+            icon:  Icon(
+              Icons.language,
+              color: ColorManager.white,
+            ),
           ),
         ],
       ),
