@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce/core/init/routes/routes_manager.dart';
-import 'package:ecommerce/core/init/theme/theme_manager.dart';
+import '../core/init/routes/routes_manager.dart';
+import '../core/init/theme/theme_manager.dart';
 import 'package:flutter/material.dart';
 
 import 'app_prefs.dart';
@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
       locale: context.locale,
       theme: getLightTheme(),
       onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: Routes.loginRoute,
+      initialRoute: Routes.signUpRoute,
     );
   }
 }

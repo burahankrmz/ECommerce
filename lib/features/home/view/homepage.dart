@@ -1,11 +1,11 @@
-import 'package:ecommerce/core/init/color/color_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 
 import '../../../app/app_prefs.dart';
 import '../../../app/di.dart';
 import '../../../core/constants/strings/strings_manager.dart';
-import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
+import '../../../core/init/color/color_manager.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

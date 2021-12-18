@@ -1,6 +1,7 @@
-import 'package:ecommerce/core/constants/fonts/fonts_manager.dart';
-import 'package:ecommerce/core/init/color/color_manager.dart';
 import 'package:flutter/cupertino.dart';
+
+import '../../constants/fonts/fonts_manager.dart';
+import '../color/color_manager.dart';
 
 TextStyle _getTextStyle(
     double fontSize, String fontFamily, FontWeight fontWeight, Color color) {

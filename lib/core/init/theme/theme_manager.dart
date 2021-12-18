@@ -1,6 +1,6 @@
-import 'package:ecommerce/core/constants/fonts/fonts_manager.dart';
-import 'package:ecommerce/core/init/color/color_manager.dart';
-import 'package:ecommerce/core/init/styles/styles_manager.dart';
+import '../../constants/fonts/fonts_manager.dart';
+import '../color/color_manager.dart';
+import '../styles/styles_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

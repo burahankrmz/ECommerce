@@ -1,9 +1,10 @@
-import 'package:ecommerce/core/constants/strings/strings_manager.dart';
-import 'package:ecommerce/view/auth/forgot_password/view/forgot_password_view.dart';
-import 'package:ecommerce/view/auth/login/view/login_view.dart';
-import 'package:ecommerce/view/auth/signup/view/signup_view.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+
+import '../../../features/auth/forgot_password/view/forgot_password_view.dart';
+import '../../../features/auth/login/view/login_view.dart';
+import '../../../features/auth/signup/view/signup_view.dart';
+import '../../constants/strings/strings_manager.dart';
 
 class Routes {
   static const String loginRoute = "/login";

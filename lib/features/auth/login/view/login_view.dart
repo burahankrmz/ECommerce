@@ -1,18 +1,23 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:ecommerce/app/app_prefs.dart';
-import 'package:ecommerce/app/di.dart';
-import 'package:ecommerce/core/assets/assets_manager.dart';
-import 'package:ecommerce/core/constants/fonts/fonts_manager.dart';
-import 'package:ecommerce/core/constants/strings/strings_manager.dart';
-import 'package:ecommerce/core/init/color/color_manager.dart';
-import 'package:ecommerce/core/init/routes/routes_manager.dart';
-import 'package:ecommerce/core/init/styles/styles_manager.dart';
-import 'package:ecommerce/product/widget/textfield.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce/core/constants/values/app_sizes.dart';
+import 'package:ecommerce/product/widgets/buttons/facebook_button.dart';
+import 'package:ecommerce/product/widgets/buttons/google_button.dart';
+import 'package:ecommerce/product/widgets/padding/custom_padding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ecommerce/core/extensions/context_extension.dart';
+
+import '../../../../app/app_prefs.dart';
+import '../../../../app/di.dart';
+import '../../../../core/constants/fonts/fonts_manager.dart';
+import '../../../../core/constants/strings/strings_manager.dart';
+import '../../../../core/extensions/context_extension.dart';
+import '../../../../core/init/color/color_manager.dart';
+import '../../../../core/init/routes/routes_manager.dart';
+import '../../../../core/init/styles/styles_manager.dart';
+import '../../../../core/widget/auth_elevated_button.dart';
+import '../../../../product/widgets/inputs/normal_input_field.dart';
+import 'user_model.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -24,8 +29,11 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   final GlobalKey _formkey = GlobalKey<FormState>();
   final AppPrefences _appPrefences = instance<AppPrefences>();
-  bool tr = true;
-  bool fals = false;
+
+  Future<void> _checkUserControl(String name, String password) async {
+    await Future.delayed(const Duration(seconds: 1));
+    if (name == User.mockUser.name && password == User.mockUser.password) {}
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +51,7 @@ class _LoginViewState extends State<LoginView> {
     return SafeArea(
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 34.0),
+          padding: const CustomPadding.pagePadding(),
           child: Form(
             key: _formkey,
             child: Column(
@@ -90,24 +98,8 @@ class _LoginViewState extends State<LoginView> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          SizedBox(
-            height: 64,
-            width: 92,
-            child: ElevatedButton(
-              onPressed: () {},
-              child: SvgPicture.asset(ImageAssets.googleSvg),
-              style: ElevatedButton.styleFrom(primary: ColorManager.white),
-            ),
-          ),
-          SizedBox(
-            height: 64,
-            width: 92,
-            child: ElevatedButton(
-              onPressed: () {},
-              child: SvgPicture.asset(ImageAssets.facebookSvg),
-              style: ElevatedButton.styleFrom(primary: ColorManager.white),
-            ),
-          ),
+          GoogleButton(onComplete: (token) {}),
+          FacebookButton(onComplete: (token) {})
         ],
       ),
     );
@@ -125,14 +117,13 @@ class _LoginViewState extends State<LoginView> {
 
   Widget _buiildLoginBtn() {
     return FadeInLeft(
-      child: SizedBox(
-        height: 48,
-        width: double.infinity,
-        child: ElevatedButton(
-          onPressed: () {},
-          child: Text(AppStrings.loginBtn.tr(),
-              style: getRegularStyle(color: ColorManager.white)),
-        ),
+      child: AuthElevatedButton(
+        width: double.maxFinite,
+        height: AppSize.s48,
+        title: AppStrings.loginBtn.tr(),
+        onPressed: () async {
+          await _checkUserControl('veli', '1234');
+        },
       ),
     );
   }
@@ -182,6 +173,15 @@ class _LoginViewState extends State<LoginView> {
     return AppBar(
       backgroundColor: ColorManager.background,
       automaticallyImplyLeading: false,
+      leading: IconButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        icon: Icon(
+          Icons.arrow_back_ios,
+          color: ColorManager.black,
+        ),
+      ),
       actions: [
         IconButton(
           onPressed: () {
@@ -191,7 +191,7 @@ class _LoginViewState extends State<LoginView> {
           icon: const Icon(
             Icons.language,
           ),
-        )
+        ),
       ],
     );
   }
