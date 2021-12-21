@@ -10,7 +10,8 @@ class SingUpUseCase implements BaseUsecase<SingUpUsecaseInput, UserCredential> {
   SingUpUseCase(this._repository);
   @override
   Future<Either<Failure, UserCredential>> execute(input) async {
-    return await _repository.signUp(SignUpRequest(input.name,input.email, input.password));
+    return await _repository
+        .signUp(SignUpRequest(input.name, input.email, input.password));
   }
 }
 
@@ -18,5 +19,5 @@ class SingUpUsecaseInput {
   String name;
   String email;
   String password;
-  SingUpUsecaseInput(this.name,this.email, this.password);
+  SingUpUsecaseInput(this.name, this.email, this.password);
 }

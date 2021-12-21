@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce/core/constants/values/app_sizes.dart';
+import 'package:ecommerce/features/auth/login/services/login_usecase.dart';
 import 'package:ecommerce/product/widgets/buttons/facebook_button.dart';
 import 'package:ecommerce/product/widgets/buttons/google_button.dart';
 import 'package:ecommerce/product/widgets/padding/custom_padding.dart';
@@ -32,6 +33,7 @@ class _LoginViewState extends State<LoginView> {
   final TextEditingController _emailEditingController = TextEditingController();
   final TextEditingController _passwordEditingController =
       TextEditingController();
+  final LoginUseCase _loginUseCase = instance<LoginUseCase>();
 
   Future<void> _checkUserControl(String name, String password) async {
     await Future.delayed(const Duration(seconds: 1));
@@ -130,7 +132,16 @@ class _LoginViewState extends State<LoginView> {
         height: AppSize.s48,
         title: AppStrings.loginBtn.tr(),
         onPressed: () async {
-          await _checkUserControl('veli', '1234');
+          (await _loginUseCase.execute(LoginUseCaseInput(
+                  _emailEditingController.text,
+                  _passwordEditingController.text)))
+              .fold(
+                  (failure) => {debugPrint(failure.message)},
+                  (data) => {
+                        debugPrint(data.user!.uid),
+                        _emailEditingController.clear(),
+                        _passwordEditingController.clear()
+                      });
         },
       ),
     );

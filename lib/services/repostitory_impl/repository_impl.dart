@@ -5,6 +5,7 @@ import 'package:ecommerce/core/init/network/failure/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce/core/init/network/networkinfo/network_info.dart';
 import 'package:ecommerce/core/init/network/repository/repository.dart';
+import 'package:ecommerce/features/auth/login/services/login_request.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ecommerce/features/auth/signup/services/signup_request.dart';
 
@@ -31,9 +32,24 @@ class RepositoryImpl implements Repository {
 
   Future<void> createUser(
       UserCredential userCredential, SignUpRequest signUpRequest) async {
-    _firebaseFirestore
-        .collection("users")
-        .doc(userCredential.user!.uid)
-        .set({"id": userCredential.user!.uid, "name": signUpRequest.name,"email": signUpRequest.email});
+    _firebaseFirestore.collection("users").doc(userCredential.user!.uid).set({
+      "id": userCredential.user!.uid,
+      "name": signUpRequest.name,
+      "email": signUpRequest.email
+    });
+  }
+
+  @override
+  Future<Either<Failure, UserCredential>> logIn(
+      LoginRequest loginRequest) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final response = await _remoteDataSource.logIn(loginRequest);
+        return Right(response);
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    }
+    return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
   }
 }

@@ -45,6 +45,12 @@ Failure _handleError(FirebaseAuthException error) {
       return DataSource.OPERATION_NOT_ALLOWED.getFailure();
     case "weak-password":
       return DataSource.WEAK_PASSWORD.getFailure();
+    case "user-disabled":
+      return DataSource.USER_DISABLED.getFailure();
+    case "user-not-found":
+      return DataSource.USER_NOT_FOUND.getFailure();
+    case "wrong-password":
+      return DataSource.WRONG_PASSWORD.getFailure();
     default:
       return DataSource.OPERATION_NOT_ALLOWED.getFailure();
   }

@@ -125,6 +125,9 @@ class _SignUpViewState extends State<SignUpView> {
           children: [
             TextButton(
               onPressed: () {
+                _emailEditingController.clear();
+                _passwordEditingController.clear();
+                _nameEditingController.clear();
                 Navigator.pushNamed(context, Routes.loginRoute);
               },
               child: Text(

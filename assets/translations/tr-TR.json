@@ -21,5 +21,9 @@
     "emailAlreadyInUse": "Bu email zaten kullanılıyor. Lütfen başka mail adresi deneyinç",
     "invalidEmail": "Lütfen Düzgün Email Formatı Girin. (example@gmail.com)",
     "operationNotAllowed": "Lütfen Firebase Consoleden Giriş Ayarlarını Aktif Edin.",
-    "weakPassword": "Daha güçlü bir şifreye ihtiyacın var."
+    "weakPassword": "Daha güçlü bir şifreye ihtiyacın var.",
+    "noInternet": "There is no Internet Connection",
+    "userDisabled": "User Disabled for a reason",
+    "userNotFound": "User Not Found",
+    "wrongPassword": "Your password is Wrong"
 }
