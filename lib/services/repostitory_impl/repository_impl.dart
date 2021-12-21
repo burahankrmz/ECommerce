@@ -34,6 +34,6 @@ class RepositoryImpl implements Repository {
     _firebaseFirestore
         .collection("users")
         .doc(userCredential.user!.uid)
-        .set({"id": userCredential.user!.uid, "email": signUpRequest.email});
+        .set({"id": userCredential.user!.uid, "name": signUpRequest.name,"email": signUpRequest.email});
   }
 }

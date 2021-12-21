@@ -172,6 +172,7 @@ class _SignUpViewState extends State<SignUpView> {
           onPressed: () async {
             debugPrint(_emailEditingController.text);
             (await _singUpUseCase.execute(SingUpUsecaseInput(
+                    _nameEditingController.text,
                     _emailEditingController.text,
                     _passwordEditingController.text)))
                 .fold(
