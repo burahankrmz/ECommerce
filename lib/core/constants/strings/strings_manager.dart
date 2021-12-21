@@ -21,13 +21,15 @@ class AppStrings {
   static const String emailValid = "emailValid";
   static const String forgotPasswordText = "Forgot Password";
 
-  //? AUTH ERROR STRINGS
-  static const String emailAlreadyInUse =
-      "emailAlreadyInUse";
-  static const String invalidEmail =
-      "invalidEmail";
-  static const String operationNotAllowed =
-      "operationNotAllowed";
-  static const String weakPassword =
-      "weakPassword";
+  //? SIGNUP ERROR STRINGS
+  static const String emailAlreadyInUse = "emailAlreadyInUse";
+  static const String invalidEmail = "invalidEmail";
+  static const String operationNotAllowed = "operationNotAllowed";
+  static const String weakPassword = "weakPassword";
+  //? LOGIN ERROR STRINGS
+  static const String noInternet = "noInternet";
+  //? LOGIN ERROR STRINGS
+  static const String userDisabled = "userDisabled";
+  static const String userNotFound = "userNotFound";
+  static const String wrongPassword = "wrongPassword";
 }

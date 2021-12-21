@@ -67,7 +67,7 @@ class _LoginViewState extends State<LoginView> {
                 CustomTextField(
                     controller: _emailEditingController,
                     error: false,
-                    label: AppStrings.name.tr(),
+                    label: AppStrings.email.tr(),
                     labelError: AppStrings.emailValid),
                 Padding(
                   padding: const CustomPadding.onlyTopP8(),

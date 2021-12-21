@@ -13,7 +13,13 @@ enum DataSource {
   // ignore: constant_identifier_names
   WEAK_PASSWORD,
   // ignore: constant_identifier_names
-  NO_INTERNET_CONNECTION
+  NO_INTERNET_CONNECTION,
+  // ignore: constant_identifier_names
+  USER_DISABLED,
+  // ignore: constant_identifier_names
+  USER_NOT_FOUND,
+  // ignore: constant_identifier_names
+  WRONG_PASSWORD
 }
 
 class ErrorHandler implements Exception {
@@ -59,6 +65,18 @@ extension DataSourceExtension on DataSource {
       case DataSource.WEAK_PASSWORD:
         return Failure(
             AuthErrorCodes.WEAK_PASSWORD, AuthErrorMessages.WEAK_PASSWORD.tr());
+      case DataSource.NO_INTERNET_CONNECTION:
+        return Failure(AuthErrorCodes.NO_INTERNET_CONNECTION,
+            AuthErrorMessages.NO_INTERNET_CONNECTION.tr());
+      case DataSource.USER_DISABLED:
+        return Failure(
+            AuthErrorCodes.USER_DISABLED, AuthErrorMessages.USER_DISABLED.tr());
+      case DataSource.USER_NOT_FOUND:
+        return Failure(AuthErrorCodes.USER_NOT_FOUND,
+            AuthErrorMessages.USER_NOT_FOUND.tr());
+      case DataSource.WRONG_PASSWORD:
+        return Failure(AuthErrorCodes.WRONG_PASSWORD,
+            AuthErrorMessages.WRONG_PASSWORD.tr());
       default:
         return Failure(AuthErrorCodes.OPERATION_NOT_ALLOWED,
             AuthErrorMessages.OPERATION_NOT_ALLOWED.tr());
@@ -67,27 +85,45 @@ extension DataSourceExtension on DataSource {
 }
 
 class AuthErrorCodes {
+  //? REGISTER ERROR CODES
   // ignore: constant_identifier_names
-  static const String EMAIL_ALREADY_IN_USE = "auth/email-already-in-use";
+  static const String EMAIL_ALREADY_IN_USE = "email-already-in-use";
   // ignore: constant_identifier_names
-  static const String INVALID_EMAIL = "auth/invalid-email";
+  static const String INVALID_EMAIL = "invalid-email";
   // ignore: constant_identifier_names
-  static const String OPERATION_NOT_ALLOWED = "auth/operation-not-allowed";
+  static const String OPERATION_NOT_ALLOWED = "operation-not-allowed";
   // ignore: constant_identifier_names
-  static const String WEAK_PASSWORD = "auth/weak-password";
+  static const String WEAK_PASSWORD = "weak-password";
+  //? NO CONNECTION ERROR CODE
   // ignore: constant_identifier_names
-  static const String NO_INTERNET_CONNECTION = "abc";
+  static const String NO_INTERNET_CONNECTION = "no-connection";
+  //? LOGIN ERROR MESSAGES
+  // ignore: constant_identifier_names
+  static const String USER_DISABLED = "user-disabled";
+  // ignore: constant_identifier_names
+  static const String USER_NOT_FOUND = "user-not-found";
+  // ignore: constant_identifier_names
+  static const String WRONG_PASSWORD = "wrong-password";
 }
 
 class AuthErrorMessages {
+  //? REGISTER ERROR CODES
   // ignore: constant_identifier_names
   static const String EMAIL_ALREADY_IN_USE = AppStrings.emailAlreadyInUse;
   // ignore: constant_identifier_names
   static const String INVALID_EMAIL = AppStrings.invalidEmail;
   // ignore: constant_identifier_names
   static const String OPERATION_NOT_ALLOWED = AppStrings.operationNotAllowed;
+  //? NO CONNECTION ERROR CODE
   // ignore: constant_identifier_names
   static const String WEAK_PASSWORD = AppStrings.weakPassword;
   // ignore: constant_identifier_names
-  static const String NO_INTERNET_CONNECTION = AppStrings.operationNotAllowed;
+  static const String NO_INTERNET_CONNECTION = AppStrings.noInternet;
+  //? LOGIN ERROR MESSAGES
+  // ignore: constant_identifier_names
+  static const String USER_DISABLED = AppStrings.userDisabled;
+  // ignore: constant_identifier_names
+  static const String USER_NOT_FOUND = AppStrings.userNotFound;
+  // ignore: constant_identifier_names
+  static const String WRONG_PASSWORD = AppStrings.wrongPassword;
 }

@@ -18,8 +18,12 @@
     "sendBtn": "SEND",
     "forgotText": "Please, enter your email adress. You will receive a link to create a new password via email.",
     "emailValid": "Not a valid email adress. Should be your@gmail.com",
-    "emailAlreadyInUse" :"Email Already In Use. Please Try Other Email.",
-    "invalidEmail" : "Please Input Correct Email",
+    "emailAlreadyInUse": "Email Already In Use. Please Try Other Email.",
+    "invalidEmail": "Please Input Correct Email",
     "operationNotAllowed": "Please open auth functions on firebase console",
-    "weakPassword" : "You need stronger password"
+    "weakPassword": "You need stronger password",
+    "noInternet": "There is no Internet Connection",
+    "userDisabled": "User Disabled for a reason",
+    "userNotFound": "User Not Found",
+    "wrongPassword": "Your password is Wrong"
 }
