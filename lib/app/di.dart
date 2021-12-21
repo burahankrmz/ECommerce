@@ -34,7 +34,7 @@ Future<void> initAppModule() async {
 
   //? firebase service
   instance.registerLazySingleton<FirebaseServices>(
-      () => FirebaseServices(instance(), instance()));
+      () => FirebaseServices(instance()));
 
   //? remote data source instance
   instance.registerLazySingleton<RemoteDataSource>(
@@ -42,7 +42,7 @@ Future<void> initAppModule() async {
 
   //? repository instance
   instance.registerLazySingleton<Repository>(
-      () => RepositoryImpl(instance(), instance()));
+      () => RepositoryImpl(instance(), instance(),instance()));
 
   //? registerusecase
   instance.registerLazySingleton<SingUpUseCase>(() => SingUpUseCase(instance()));
