@@ -31,14 +31,14 @@ class ErrorHandler implements Exception {
 
 Failure _handleError(FirebaseAuthException error) {
   switch (error.code) {
-    case "auth/email-already-in-use":
+    case "email-already-in-use":
       return DataSource.EMAIL_ALREADY_IN_USE.getFailure();
-    case "auth/invalid-email":
-      return DataSource.EMAIL_ALREADY_IN_USE.getFailure();
-    case "auth/operation-not-allowed":
-      return DataSource.EMAIL_ALREADY_IN_USE.getFailure();
-    case "auth/weak-password":
-      return DataSource.EMAIL_ALREADY_IN_USE.getFailure();
+    case "invalid-email":
+      return DataSource.INVALID_EMAIL.getFailure();
+    case "operation-not-allowed":
+      return DataSource.OPERATION_NOT_ALLOWED.getFailure();
+    case "weak-password":
+      return DataSource.WEAK_PASSWORD.getFailure();
     default:
       return DataSource.OPERATION_NOT_ALLOWED.getFailure();
   }
@@ -83,11 +83,11 @@ class AuthErrorMessages {
   // ignore: constant_identifier_names
   static const String EMAIL_ALREADY_IN_USE = AppStrings.emailAlreadyInUse;
   // ignore: constant_identifier_names
-  static const String INVALID_EMAIL = AppStrings.emailAlreadyInUse;
+  static const String INVALID_EMAIL = AppStrings.invalidEmail;
   // ignore: constant_identifier_names
-  static const String OPERATION_NOT_ALLOWED = AppStrings.emailAlreadyInUse;
+  static const String OPERATION_NOT_ALLOWED = AppStrings.operationNotAllowed;
   // ignore: constant_identifier_names
-  static const String WEAK_PASSWORD = AppStrings.emailAlreadyInUse;
+  static const String WEAK_PASSWORD = AppStrings.weakPassword;
   // ignore: constant_identifier_names
-  static const String NO_INTERNET_CONNECTION = AppStrings.emailAlreadyInUse;
+  static const String NO_INTERNET_CONNECTION = AppStrings.operationNotAllowed;
 }

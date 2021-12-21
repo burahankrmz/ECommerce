@@ -171,9 +171,16 @@ class _SignUpViewState extends State<SignUpView> {
           title: AppStrings.signupBtn.tr(),
           onPressed: () async {
             debugPrint(_emailEditingController.text);
-            await _singUpUseCase.execute(SingUpUsecaseInput(
+            (await _singUpUseCase.execute(SingUpUsecaseInput(
                     _emailEditingController.text,
-                    _passwordEditingController.text));
+                    _passwordEditingController.text)))
+                .fold(
+                    (failure) => {debugPrint(failure.message)},
+                    (data) => {
+                          debugPrint(data.user!.uid),
+                          _emailEditingController.clear(),
+                          _passwordEditingController.clear()
+                        });
           },
         ),
       ),
