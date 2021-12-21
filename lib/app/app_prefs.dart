@@ -6,9 +6,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 // ignore: constant_identifier_names
 const String PREFS_KEY_LANG = 'PREFS_KEY_LANG';
 // ignore: constant_identifier_names
+const String PREFS_KEY_THEME = 'PREFS_KEY_THEME';
+// ignore: constant_identifier_names
 const String PREFS_KEY_ONBOARDING_SCREEN = 'PREFS_KEY_ONBOARDING_SCREEN';
 // ignore: constant_identifier_names
 const String PREFS_KEY_USER_LOGGED_IN = 'PREFS_KEY_USER_LOGGED_IN';
+// ignore: constant_identifier_names
+const String LIGHT_THEME = 'light';
+// ignore: constant_identifier_names
+const String DARK_THEME = 'dark';
+
 
 class AppPrefences {
   final SharedPreferences _sharedPreferences;
@@ -40,6 +47,34 @@ class AppPrefences {
       return TURKISH_LOCALE;
     } else {
       return ENGLISH_LOCALE;
+    }
+  }
+
+  Future<String> getAppTheme() async {
+    String? light = _sharedPreferences.getString(PREFS_KEY_THEME);
+
+    if (light != null && light.isNotEmpty) {
+      return light;
+    } else {
+      return DARK_THEME;
+    }
+  }
+
+  Future<void> setThemeChanged() async {
+    String currentTheme = await getAppTheme();
+    if (currentTheme == LIGHT_THEME) {
+      _sharedPreferences.setString(PREFS_KEY_LANG, LIGHT_THEME);
+    } else {
+      _sharedPreferences.setString(PREFS_KEY_LANG, DARK_THEME);
+    }
+  }
+
+  Future<String> getThemeStyle() async {
+    String currentLanguage = await getAppTheme();
+    if (currentLanguage == DARK_THEME) {
+      return DARK_THEME;
+    } else {
+      return LIGHT_THEME;
     }
   }
 }

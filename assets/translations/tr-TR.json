@@ -17,5 +17,9 @@
     "orlogin": "Ya da Sosyal Hesabinla Giris Yap",
     "sendBtn": "GONDER",
     "forgotText": "Lutfen, email adresiniz giriniz. Bir mesaj sifirlama maili alacaksiniz.",
-    "emailValid": "Yanlis email adresi. your@gmail.com seklinde olmali."
+    "emailValid": "Yanlis email adresi. your@gmail.com seklinde olmali.",
+    "emailAlreadyInUse" :"Email Already In Use. Please Try Other Email.",
+    "invalidEmail" : "Please Input Correct Email",
+    "operationNotAllowed": "Please open auth functions on firebase console",
+    "weakPassword" : "You need stronger password"
 }

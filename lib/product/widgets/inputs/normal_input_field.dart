@@ -9,12 +9,13 @@ class CustomTextField extends StatelessWidget {
   final bool error;
   final String label;
   final String labelError;
+  final TextEditingController controller;
 
   const CustomTextField({
     Key? key,
     required this.error,
     required this.label,
-    required this.labelError,
+    required this.labelError, required this.controller,
   }) : super(key: key);
 
   @override
@@ -35,6 +36,7 @@ class CustomTextField extends StatelessWidget {
               ),
               child: Center(
                 child: TextFormField(
+                  controller: controller,
                   style: getRegularStyle(
                       color: ColorManager.black1, fontSize: AppSize.s16),
                   decoration: InputDecoration(

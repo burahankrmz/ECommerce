@@ -17,7 +17,7 @@ import '../../../../core/init/routes/routes_manager.dart';
 import '../../../../core/init/styles/styles_manager.dart';
 import '../../../../core/widget/auth_elevated_button.dart';
 import '../../../../product/widgets/inputs/normal_input_field.dart';
-import 'user_model.dart';
+import '../model/user_model.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -29,6 +29,9 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   final GlobalKey _formkey = GlobalKey<FormState>();
   final AppPrefences _appPrefences = instance<AppPrefences>();
+  final TextEditingController _emailEditingController = TextEditingController();
+  final TextEditingController _passwordEditingController =
+      TextEditingController();
 
   Future<void> _checkUserControl(String name, String password) async {
     await Future.delayed(const Duration(seconds: 1));
@@ -62,13 +65,18 @@ class _LoginViewState extends State<LoginView> {
                   height: context.dynamicHeight(0.09),
                 ),
                 CustomTextField(
+                    controller: _emailEditingController,
                     error: false,
                     label: AppStrings.name.tr(),
                     labelError: AppStrings.emailValid),
-                CustomTextField(
-                    error: false,
-                    label: AppStrings.password.tr(),
-                    labelError: AppStrings.password),
+                Padding(
+                  padding: const CustomPadding.onlyTopP8(),
+                  child: CustomTextField(
+                      controller: _passwordEditingController,
+                      error: false,
+                      label: AppStrings.password.tr(),
+                      labelError: AppStrings.password),
+                ),
                 SizedBox(
                   height: context.dynamicHeight(0.02),
                 ),
@@ -171,15 +179,13 @@ class _LoginViewState extends State<LoginView> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: ColorManager.background,
       automaticallyImplyLeading: false,
       leading: IconButton(
         onPressed: () {
           Navigator.pop(context);
         },
-        icon: Icon(
+        icon: const Icon(
           Icons.arrow_back_ios,
-          color: ColorManager.black,
         ),
       ),
       actions: [

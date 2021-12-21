@@ -20,4 +20,14 @@ class AppStrings {
   static const String forgotText = "forgotText";
   static const String emailValid = "emailValid";
   static const String forgotPasswordText = "Forgot Password";
+
+  //? AUTH ERROR STRINGS
+  static const String emailAlreadyInUse =
+      "emailAlreadyInUse";
+  static const String invalidEmail =
+      "invalidEmail";
+  static const String operationNotAllowed =
+      "operationNotAllowed";
+  static const String weakPassword =
+      "weakPassword";
 }

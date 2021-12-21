@@ -17,5 +17,9 @@
     "orlogin": "Or login with social account",
     "sendBtn": "SEND",
     "forgotText": "Please, enter your email adress. You will receive a link to create a new password via email.",
-    "emailValid": "Not a valid email adress. Should be your@gmail.com"
+    "emailValid": "Not a valid email adress. Should be your@gmail.com",
+    "emailAlreadyInUse" :"Email Already In Use. Please Try Other Email.",
+    "invalidEmail" : "Please Input Correct Email",
+    "operationNotAllowed": "Please open auth functions on firebase console",
+    "weakPassword" : "You need stronger password"
 }

@@ -4,7 +4,6 @@ import 'package:ecommerce/app/app_prefs.dart';
 import 'package:ecommerce/app/di.dart';
 import 'package:ecommerce/core/constants/strings/strings_manager.dart';
 import 'package:ecommerce/core/constants/values/app_sizes.dart';
-import 'package:ecommerce/core/init/color/color_manager.dart';
 import 'package:ecommerce/core/widget/auth_elevated_button.dart';
 import 'package:ecommerce/product/widgets/inputs/normal_input_field.dart';
 import 'package:ecommerce/product/widgets/padding/custom_padding.dart';
@@ -21,6 +20,8 @@ class ForgotPasswordView extends StatefulWidget {
 class _ForgotPasswordViewState extends State<ForgotPasswordView> {
   final GlobalKey _formkey = GlobalKey<FormState>();
   final AppPrefences _appPrefences = instance<AppPrefences>();
+  final TextEditingController _emailEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +41,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                   Padding(
                     padding: const CustomPadding.symmetricVerticalp16(),
                     child: CustomTextField(
+                      controller: _emailEditingController,
                       error: true,
                       label: AppStrings.email.tr(),
                       labelError: AppStrings.emailValid.tr(),
@@ -90,15 +92,13 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: ColorManager.background,
       automaticallyImplyLeading: false,
       leading: IconButton(
         onPressed: () {
           Navigator.pop(context);
         },
-        icon: Icon(
+        icon: const Icon(
           Icons.arrow_back_ios,
-          color: ColorManager.black,
         ),
       ),
       actions: [

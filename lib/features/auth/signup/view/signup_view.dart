@@ -6,6 +6,7 @@ import 'package:ecommerce/core/constants/values/app_sizes.dart';
 import 'package:ecommerce/core/init/routes/routes_manager.dart';
 import 'package:ecommerce/core/init/styles/styles_manager.dart';
 import 'package:ecommerce/core/widget/auth_elevated_button.dart';
+import 'package:ecommerce/features/auth/signup/services/signup_usecase.dart';
 import 'package:ecommerce/product/widgets/buttons/facebook_button.dart';
 import 'package:ecommerce/product/widgets/buttons/google_button.dart';
 import 'package:ecommerce/product/widgets/inputs/normal_input_field.dart';
@@ -27,6 +28,20 @@ class SignUpView extends StatefulWidget {
 class _SignUpViewState extends State<SignUpView> {
   final GlobalKey _formkey = GlobalKey<FormState>();
   final AppPrefences _appPrefences = instance<AppPrefences>();
+  final SingUpUseCase _singUpUseCase = instance<SingUpUseCase>();
+  final TextEditingController _nameEditingController = TextEditingController();
+  final TextEditingController _emailEditingController = TextEditingController();
+  final TextEditingController _passwordEditingController =
+      TextEditingController();
+
+  @override
+  void dispose() {
+    _nameEditingController.dispose();
+    _emailEditingController.dispose();
+    _passwordEditingController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +60,7 @@ class _SignUpViewState extends State<SignUpView> {
                     height: AppSize.s55,
                   ),
                   CustomTextField(
+                    controller: _nameEditingController,
                     error: false,
                     label: AppStrings.name.tr(),
                     labelError: AppStrings.name.tr(),
@@ -52,6 +68,7 @@ class _SignUpViewState extends State<SignUpView> {
                   Padding(
                     padding: const CustomPadding.onlyTopP8(),
                     child: CustomTextField(
+                      controller: _emailEditingController,
                       error: false,
                       label: AppStrings.email.tr(),
                       labelError: AppStrings.emailValid.tr(),
@@ -60,6 +77,7 @@ class _SignUpViewState extends State<SignUpView> {
                   Padding(
                     padding: const CustomPadding.onlyTopP8BottomP16(),
                     child: CustomTextField(
+                      controller: _passwordEditingController,
                       error: false,
                       label: AppStrings.password.tr(),
                       labelError: AppStrings.password.tr(),
@@ -152,8 +170,10 @@ class _SignUpViewState extends State<SignUpView> {
           height: AppSize.s48,
           title: AppStrings.signupBtn.tr(),
           onPressed: () async {
-            // ignore: avoid_returning_null_for_void
-            return null;
+            debugPrint(_emailEditingController.text);
+            await _singUpUseCase.execute(SingUpUsecaseInput(
+                    _emailEditingController.text,
+                    _passwordEditingController.text));
           },
         ),
       ),
@@ -171,7 +191,6 @@ class _SignUpViewState extends State<SignUpView> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: ColorManager.background,
       automaticallyImplyLeading: false,
       actions: [
         IconButton(
