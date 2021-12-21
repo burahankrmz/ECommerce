@@ -1,9 +1,10 @@
-import 'package:ecommerce/core/init/network/failure/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce/core/init/network/repository/repository.dart';
-import 'package:ecommerce/core/init/network/usecases/base_usecase.dart';
-import 'package:ecommerce/features/auth/login/services/login_request.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import '../../../../core/init/network/failure/failure.dart';
+import '../../../../core/init/network/repository/repository.dart';
+import '../../../../core/init/network/usecases/base_usecase.dart';
+import 'login_request.dart';
 
 class LoginUseCase implements BaseUsecase<LoginUseCaseInput, UserCredential> {
   final Repository _repository;

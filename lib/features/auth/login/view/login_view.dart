@@ -1,10 +1,10 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce/core/constants/values/app_sizes.dart';
-import 'package:ecommerce/features/auth/login/services/login_usecase.dart';
-import 'package:ecommerce/product/widgets/buttons/facebook_button.dart';
-import 'package:ecommerce/product/widgets/buttons/google_button.dart';
-import 'package:ecommerce/product/widgets/padding/custom_padding.dart';
+import '../../../../core/constants/values/app_sizes.dart';
+import '../services/login_usecase.dart';
+import '../../../../product/widgets/buttons/facebook_button.dart';
+import '../../../../product/widgets/buttons/google_button.dart';
+import '../../../../product/widgets/padding/custom_padding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 
@@ -18,7 +18,6 @@ import '../../../../core/init/routes/routes_manager.dart';
 import '../../../../core/init/styles/styles_manager.dart';
 import '../../../../core/widget/auth_elevated_button.dart';
 import '../../../../product/widgets/inputs/normal_input_field.dart';
-import '../model/user_model.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -34,11 +33,6 @@ class _LoginViewState extends State<LoginView> {
   final TextEditingController _passwordEditingController =
       TextEditingController();
   final LoginUseCase _loginUseCase = instance<LoginUseCase>();
-
-  Future<void> _checkUserControl(String name, String password) async {
-    await Future.delayed(const Duration(seconds: 1));
-    if (name == User.mockUser.name && password == User.mockUser.password) {}
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -132,6 +126,7 @@ class _LoginViewState extends State<LoginView> {
         height: AppSize.s48,
         title: AppStrings.loginBtn.tr(),
         onPressed: () async {
+
           (await _loginUseCase.execute(LoginUseCaseInput(
                   _emailEditingController.text,
                   _passwordEditingController.text)))

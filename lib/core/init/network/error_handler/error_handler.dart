@@ -1,5 +1,5 @@
-import 'package:ecommerce/core/constants/strings/strings_manager.dart';
-import 'package:ecommerce/core/init/network/failure/failure.dart';
+import '../../../constants/strings/strings_manager.dart';
+import '../failure/failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:easy_localization/easy_localization.dart';
 

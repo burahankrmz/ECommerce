@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce/core/init/network/failure/failure.dart';
-import 'package:ecommerce/features/auth/login/services/login_request.dart';
-import 'package:ecommerce/features/auth/signup/services/signup_request.dart';
+import '../failure/failure.dart';
+import '../../../../features/auth/login/services/login_request.dart';
+import '../../../../features/auth/signup/services/signup_request.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class Repository {

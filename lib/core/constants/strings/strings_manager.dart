@@ -32,4 +32,8 @@ class AppStrings {
   static const String userDisabled = "userDisabled";
   static const String userNotFound = "userNotFound";
   static const String wrongPassword = "wrongPassword";
+  //? LOADING
+  static const String loading = "loading";
+  static const String ok = "ok";
+  static const String retryAgain = "retryAgain";
 }

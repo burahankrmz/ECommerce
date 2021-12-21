@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce/core/init/network/failure/failure.dart';
-import 'package:ecommerce/core/init/network/repository/repository.dart';
-import 'package:ecommerce/core/init/network/usecases/base_usecase.dart';
-import 'package:ecommerce/features/auth/signup/services/signup_request.dart';
+import '../../../../core/init/network/failure/failure.dart';
+import '../../../../core/init/network/repository/repository.dart';
+import '../../../../core/init/network/usecases/base_usecase.dart';
+import 'signup_request.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class SingUpUseCase implements BaseUsecase<SingUpUsecaseInput, UserCredential> {

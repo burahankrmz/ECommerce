@@ -1,6 +1,6 @@
-import 'package:ecommerce/core/init/network/services/firebase_services.dart';
-import 'package:ecommerce/features/auth/login/services/login_request.dart';
-import 'package:ecommerce/features/auth/signup/services/signup_request.dart';
+import '../services/firebase_services.dart';
+import '../../../../features/auth/login/services/login_request.dart';
+import '../../../../features/auth/signup/services/signup_request.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class RemoteDataSource {

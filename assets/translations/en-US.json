@@ -25,5 +25,8 @@
     "noInternet": "There is no Internet Connection",
     "userDisabled": "User Disabled for a reason",
     "userNotFound": "User Not Found",
-    "wrongPassword": "Your password is Wrong"
+    "wrongPassword": "Your password is Wrong",
+    "loading": "Loading...",
+    "ok": "Okey",
+    "retryAgain": "Try Again"
 }

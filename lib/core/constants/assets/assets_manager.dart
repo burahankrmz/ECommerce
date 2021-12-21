@@ -1,7 +1,17 @@
 // ignore: constant_identifier_names
 const String IMAGE_PATH = "assets/images";
+// ignore: constant_identifier_names
+const String JSON_PATH = "assets/json";
+
 
 class ImageAssets {
   static const String googleSvg = '$IMAGE_PATH/google.svg';
   static const String facebookSvg = '$IMAGE_PATH/facebook.svg';
+}
+
+class JsonAssets {
+  static const String empty = '$JSON_PATH/empty.json';
+  static const String loading = '$JSON_PATH/loading.json';
+  static const String error = '$JSON_PATH/error.json';
+  static const String success = '$JSON_PATH/success.json';
 }

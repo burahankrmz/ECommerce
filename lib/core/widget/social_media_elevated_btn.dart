@@ -1,4 +1,4 @@
-import 'package:ecommerce/core/constants/values/app_sizes.dart';
+import '../constants/values/app_sizes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../init/color/color_manager.dart';
