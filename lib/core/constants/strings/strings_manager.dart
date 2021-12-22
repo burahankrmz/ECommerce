@@ -19,7 +19,7 @@ class AppStrings {
   static const String sendBtn = "sendBtn";
   static const String forgotText = "forgotText";
   static const String emailValid = "emailValid";
-  static const String forgotPasswordText = "Forgot Password";
+  static const String forgotPasswordText = "forgotPasswordText";
 
   //? SIGNUP ERROR STRINGS
   static const String emailAlreadyInUse = "emailAlreadyInUse";
