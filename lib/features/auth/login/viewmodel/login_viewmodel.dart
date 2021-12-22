@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:ecommerce/core/init/base/base_viewmodel.dart';
-import 'package:ecommerce/core/init/functions/functions.dart';
-import 'package:ecommerce/features/auth/login/freezed_model/login_freezed_model.dart';
-import 'package:ecommerce/features/auth/login/services/login_usecase.dart';
-import 'package:ecommerce/features/state/state_renderer.dart';
-import 'package:ecommerce/features/state/state_renderer.impl.dart';
+import '../../../../core/init/base/base_viewmodel.dart';
+import '../../../../core/init/functions/functions.dart';
+import '../freezed_model/login_freezed_model.dart';
+import '../services/login_usecase.dart';
+import '../../../state/state_renderer.dart';
+import '../../../state/state_renderer.impl.dart';
 
 class LoginViewModel extends BaseViewModel
     with LoginViewModelInputs, LoginViewModelOutputs {
@@ -13,7 +13,7 @@ class LoginViewModel extends BaseViewModel
       StreamController<String>.broadcast();
   final StreamController _passwordController =
       StreamController<String>.broadcast();
-  final StreamController _isAllValid = StreamController<bool>.broadcast();
+  final StreamController _isAllValid = StreamController<void>.broadcast();
   StreamController isUserLoggedInSuccessfullyStreamController =
       StreamController<bool>();
 
@@ -35,7 +35,7 @@ class LoginViewModel extends BaseViewModel
         .fold(
             (failure) => {
                   inputState.add(ErrorState(
-                      StateRendererType.POPUP_ERROR_STATE, failure.message))
+                      StateRendererType.POPUP_ERROR_STATE, failure.message)),
                 },
             (data) => {
                   inputState.add(ContentState()),
@@ -107,7 +107,7 @@ class LoginViewModel extends BaseViewModel
   }
 
   _isPasswordValid(String password) {
-    return password.length > 6;
+    return password.length >= 6;
   }
 
   //?DISPOSE
@@ -115,6 +115,8 @@ class LoginViewModel extends BaseViewModel
   void dispose() {
     _emailController.close();
     _passwordController.close();
+    _isAllValid.close();
+    isUserLoggedInSuccessfullyStreamController.close();
   }
 }
 

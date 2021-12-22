@@ -1,8 +1,8 @@
-import '../constants/values/app_sizes.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../constants/values/app_sizes.dart';
 import '../init/color/color_manager.dart';
-import 'package:flutter/material.dart';
 
 typedef FutureCallBack = Future<void> Function();
 

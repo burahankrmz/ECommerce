@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../../../../core/init/network/failure/failure.dart';
 import '../../../../core/init/network/repository/repository.dart';
 import '../../../../core/init/network/usecases/base_usecase.dart';
 import 'signup_request.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUpUseCase implements BaseUsecase<SignUpUseCaseInput, UserCredential> {
   final Repository _repository;

@@ -1,7 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce/features/auth/login/viewmodel/login_viewmodel.dart';
-import 'package:ecommerce/features/state/state_renderer.impl.dart';
+import '../viewmodel/login_viewmodel.dart';
+import '../../../state/state_renderer.impl.dart';
 import 'package:flutter/scheduler.dart';
 import '../../../../core/constants/values/app_sizes.dart';
 import '../../../../product/widgets/buttons/facebook_button.dart';
@@ -14,7 +14,6 @@ import '../../../../app/app_prefs.dart';
 import '../../../../app/di.dart';
 import '../../../../core/constants/fonts/fonts_manager.dart';
 import '../../../../core/constants/strings/strings_manager.dart';
-import '../../../../core/extensions/context_extension.dart';
 import '../../../../core/init/color/color_manager.dart';
 import '../../../../core/init/routes/routes_manager.dart';
 import '../../../../core/init/styles/styles_manager.dart';
@@ -31,10 +30,11 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   final GlobalKey _formkey = GlobalKey<FormState>();
   final AppPrefences _appPrefences = instance<AppPrefences>();
+  final LoginViewModel _viewModel = instance<LoginViewModel>();
+
   final TextEditingController _emailEditingController = TextEditingController();
   final TextEditingController _passwordEditingController =
       TextEditingController();
-  final LoginViewModel _viewModel = instance<LoginViewModel>();
 
   _bind() {
     _viewModel.init();
@@ -42,7 +42,7 @@ class _LoginViewState extends State<LoginView> {
       _viewModel.setEmail(_emailEditingController.text);
     });
     _passwordEditingController.addListener(() {
-      _viewModel.setEmail(_passwordEditingController.text);
+      _viewModel.setPassword(_passwordEditingController.text);
     });
     _viewModel.isUserLoggedInSuccessfullyStreamController.stream
         .listen((isUserLoggedIN) {
@@ -60,15 +60,7 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<FlowState>(
-        stream: _viewModel.outputState,
-        builder: (context, snapshot) {
-          return snapshot.data?.getScreenWidget(context, _buildContentWidget(),
-                  () {
-                _viewModel.login();
-              }) ??
-              _buildContentWidget();
-        });
+    return _buildContentWidget();
   }
 
   Widget _buildContentWidget() {
@@ -79,16 +71,23 @@ class _LoginViewState extends State<LoginView> {
       },
       child: Scaffold(
         appBar: _buildAppBar(),
-        body: _buildBody(),
+        body: StreamBuilder<FlowState>(
+            stream: _viewModel.outputState,
+            builder: (context, snapshot) {
+              return snapshot.data?.getScreenWidget(context, _buildBody(), () {
+                    _viewModel.login();
+                  }) ??
+                  _buildBody();
+            }),
       ),
     );
   }
 
   Widget _buildBody() {
     return SafeArea(
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const CustomPadding.pagePadding(),
+      child: Padding(
+        padding: const CustomPadding.pagePadding(),
+        child: SingleChildScrollView(
           child: Form(
             key: _formkey,
             child: Column(
@@ -98,20 +97,29 @@ class _LoginViewState extends State<LoginView> {
                 const SizedBox(
                   height: AppSize.s73,
                 ),
-                CustomTextField(
-                    visibility: _emailEditingController.text.isNotEmpty,
-                    controller: _emailEditingController,
-                    error: false,
-                    label: AppStrings.email.tr(),
-                    labelError: AppStrings.emailValid),
+                StreamBuilder<String?>(
+                    stream: _viewModel.outputEmail,
+                    builder: (context, snapshot) {
+                      return CustomTextField(
+                          visibility: _emailEditingController.text.isNotEmpty,
+                          controller: _emailEditingController,
+                          error: snapshot.hasData,
+                          label: AppStrings.email.tr(),
+                          labelError: AppStrings.emailValid.tr());
+                    }),
                 Padding(
                   padding: const CustomPadding.symmetricVerticalp8(),
-                  child: CustomTextField(
-                      visibility: _passwordEditingController.text.isNotEmpty,
-                      controller: _passwordEditingController,
-                      error: false,
-                      label: AppStrings.password.tr(),
-                      labelError: AppStrings.password),
+                  child: StreamBuilder<String?>(
+                      stream: _viewModel.outputPassword,
+                      builder: (context, snapshot) {
+                        return CustomTextField(
+                            visibility:
+                                _passwordEditingController.text.isNotEmpty,
+                            controller: _passwordEditingController,
+                            error: snapshot.hasData,
+                            label: AppStrings.password.tr(),
+                            labelError: AppStrings.password.tr());
+                      }),
                 ),
                 const SizedBox(
                   height: AppSize.s8,
@@ -120,13 +128,13 @@ class _LoginViewState extends State<LoginView> {
                 const SizedBox(
                   height: AppSize.s32,
                 ),
-                _buiildLoginBtn(),
-                SizedBox(
-                  height: context.dynamicHeight(0.05),
+                _buildLoginBtn(),
+                const SizedBox(
+                  height: AppSize.s32,
                 ),
                 _buildOrLoginTextBtn(),
-                SizedBox(
-                  height: context.dynamicHeight(0.02),
+                const SizedBox(
+                  height: AppSize.s16,
                 ),
                 _buildSocialMediaBtns()
               ],
@@ -163,13 +171,21 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  Widget _buiildLoginBtn() {
+  Widget _buildLoginBtn() {
     return FadeInLeft(
-      child: AuthElevatedButton(
-        width: double.maxFinite,
-        height: AppSize.s48,
-        title: AppStrings.loginBtn.tr(),
-        onPressed: () async {},
+      child: StreamBuilder<bool>(
+        stream: _viewModel.outputIsAllValid,
+        builder: (context, snapshot) {
+          return AuthElevatedButton(
+              width: double.maxFinite,
+              height: AppSize.s48,
+              title: AppStrings.loginBtn.tr(),
+              onPressed: (snapshot.data ?? false)
+                  ? () {
+                      _viewModel.login();
+                    }
+                  : null);
+        },
       ),
     );
   }
@@ -239,5 +255,13 @@ class _LoginViewState extends State<LoginView> {
         ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    _viewModel.dispose();
+    _emailEditingController.dispose();
+    _passwordEditingController.dispose();
+    super.dispose();
   }
 }

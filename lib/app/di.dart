@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecommerce/features/auth/login/viewmodel/login_viewmodel.dart';
+import '../features/auth/login/viewmodel/login_viewmodel.dart';
 import '../features/auth/signup/viewmodel/signup_viewmodel.dart';
 import '../core/init/network/data_source/remote_data_source.dart';
 import '../core/init/network/networkinfo/network_info.dart';

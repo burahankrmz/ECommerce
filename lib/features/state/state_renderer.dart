@@ -1,3 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+
 import '../../core/constants/assets/assets_manager.dart';
 import '../../core/constants/fonts/fonts_manager.dart';
 import '../../core/constants/strings/strings_manager.dart';
@@ -6,9 +10,6 @@ import '../../core/init/color/color_manager.dart';
 import '../../core/init/network/failure/failure.dart';
 import '../../core/init/styles/styles_manager.dart';
 import '../../product/widgets/padding/custom_padding.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 enum StateRendererType {
 //? POPUP STATES

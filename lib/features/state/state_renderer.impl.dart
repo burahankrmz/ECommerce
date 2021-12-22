@@ -48,7 +48,6 @@ class EmptyState extends FlowState {
 
 //? FORGOT PASSWORD SENT State
 class SuccessState extends FlowState {
-
   String message;
   SuccessState(this.message);
   @override
@@ -104,7 +103,7 @@ extension FlowStateExtension on FlowState {
       case SuccessState:
         {
           dismissDialog(context);
-           showPopPup(context, getStateRendererType(), getmessage());
+          showPopPup(context, getStateRendererType(), getmessage());
           return contentScreenWidget;
         }
       case EmptyState:
