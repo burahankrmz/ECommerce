@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
+import 'package:ecommerce/core/constants/strings/strings_manager.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../core/init/network/data_source/remote_data_source.dart';
@@ -9,6 +10,7 @@ import '../core/init/network/networkinfo/network_info.dart';
 import '../core/init/network/repository/repository.dart';
 import '../features/auth/login/services/login_request.dart';
 import '../features/auth/signup/services/signup_request.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class RepositoryImpl implements Repository {
   final RemoteDataSource _remoteDataSource;
@@ -52,5 +54,18 @@ class RepositoryImpl implements Repository {
       }
     }
     return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+  }
+
+  @override
+  Future<Either<Failure, String>> forgotPassword(String email) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        await _remoteDataSource.forgotPassword(email);
+        return  Right(AppStrings.sentForgotMail.tr());
+      } catch (error) {
+        return left(ErrorHandler.handle(error).failure);
+      }
+    }
+    return left(DataSource.NO_INTERNET_CONNECTION.getFailure());
   }
 }

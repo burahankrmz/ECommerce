@@ -1,5 +1,10 @@
+import 'dart:async';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce/core/init/routes/routes_manager.dart';
+import 'package:ecommerce/features/auth/forgot_password/viewmodel/forgot_password_viewmodel.dart';
+import 'package:ecommerce/features/state/state_renderer.impl.dart';
 import '../../../../app/app_prefs.dart';
 import '../../../../app/di.dart';
 import '../../../../core/constants/strings/strings_manager.dart';
@@ -21,37 +26,66 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
   final GlobalKey _formkey = GlobalKey<FormState>();
   final AppPrefences _appPrefences = instance<AppPrefences>();
   final TextEditingController _emailEditingController = TextEditingController();
+  final ForgotPasswordViewModel _viewModel =
+      instance<ForgotPasswordViewModel>();
+  _bind() {
+    _viewModel.init();
+    _emailEditingController
+        .addListener(() => _viewModel.setEmail(_emailEditingController.text));
+  }
+
+  @override
+  void initState() {
+    _bind();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(),
-      body: SafeArea(
-        child: Padding(
-          padding: const CustomPadding.pagePadding(),
-          child: SingleChildScrollView(
-            child: Form(
-              key: _formkey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildForgotText(),
-                  const SizedBox(height: AppSize.s87),
-                  _builddDescriptionText(),
-                  Padding(
-                    padding: const CustomPadding.symmetricVerticalp16(),
-                    child: CustomTextField(
-                      visibility: _emailEditingController.text.isNotEmpty,
-                      controller: _emailEditingController,
-                      error: true,
-                      label: AppStrings.email.tr(),
-                      labelError: AppStrings.emailValid.tr(),
-                    ),
-                  ),
-                  const SizedBox(height: AppSize.s55),
-                  _buildSendBtn()
-                ],
-              ),
+      body: StreamBuilder<FlowState>(
+          stream: _viewModel.outputState,
+          builder: (context, snapshot) {
+            return snapshot.data
+                    ?.getScreenWidget(context, _buildContentWidget(), () {
+                  _viewModel.forgotPassword();
+                }) ??
+                _buildContentWidget();
+          }),
+    );
+  }
+
+  Widget _buildContentWidget() {
+    return SafeArea(
+      child: Padding(
+        padding: const CustomPadding.pagePadding(),
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formkey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildForgotText(),
+                const SizedBox(height: AppSize.s87),
+                _builddDescriptionText(),
+                Padding(
+                  padding: const CustomPadding.symmetricVerticalp16(),
+                  child: StreamBuilder<bool>(
+                      stream: _viewModel.outputIsEmailValid,
+                      builder: (context, snapshot) {
+                        return CustomTextField(
+                          visibility: _emailEditingController.text.isNotEmpty,
+                          controller: _emailEditingController,
+                          error: (snapshot.hasData) ? !snapshot.data! : false,
+                          label: AppStrings.email.tr(),
+                          labelError: AppStrings.emailValid.tr(),
+                        );
+                      }),
+                ),
+                const SizedBox(height: AppSize.s55),
+                _buildSendBtn()
+              ],
             ),
           ),
         ),
@@ -61,15 +95,24 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
 
   Widget _buildSendBtn() {
     return FadeInLeft(
-      child: AuthElevatedButton(
-        width: double.maxFinite,
-        height: AppSize.s48,
-        title: AppStrings.sendBtn.tr(),
-        onPressed: () async {
-          // ignore: avoid_returning_null_for_void
-          return null;
-        },
-      ),
+      child: StreamBuilder<bool>(
+          stream: _viewModel.outputIsAllInputValid,
+          builder: (context, snapshot) {
+            return AuthElevatedButton(
+              width: double.maxFinite,
+              height: AppSize.s48,
+              title: AppStrings.sendBtn.tr(),
+              onPressed: (snapshot.data ?? false)
+                  ? () {
+                      _viewModel.forgotPassword();
+                      Timer(const Duration(seconds: 5), () {
+                        Navigator.pushReplacementNamed(
+                            context, Routes.loginRoute);
+                      });
+                    }
+                  : null,
+            );
+          }),
     );
   }
 
@@ -115,5 +158,12 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
         ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    _viewModel.dispose();
+    _emailEditingController.dispose();
+    super.dispose();
   }
 }

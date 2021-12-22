@@ -16,4 +16,8 @@ class FirebaseServices {
         .signInWithEmailAndPassword(email: email, password: password);
     return userCredential;
   }
+
+  Future<void> forgotPassword(String email) async {
+    await _firebaseAuth.sendPasswordResetEmail(email: email);
+  }
 }

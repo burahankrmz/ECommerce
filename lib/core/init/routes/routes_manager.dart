@@ -26,6 +26,7 @@ class RouteGenerator {
         return PageTransition(
             child: const SignUpView(), type: PageTransitionType.rightToLeft);
       case Routes.forgotPasswordRoute:
+        initForgotPasswordModule();
         return PageTransition(
             child: const ForgotPasswordView(),
             type: PageTransitionType.bottomToTop);

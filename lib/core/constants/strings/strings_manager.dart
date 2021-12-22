@@ -36,4 +36,5 @@ class AppStrings {
   static const String loading = "loading";
   static const String ok = "ok";
   static const String retryAgain = "retryAgain";
+  static const String sentForgotMail = "sentForgotMail";
 }

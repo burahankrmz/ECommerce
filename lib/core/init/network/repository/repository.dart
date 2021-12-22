@@ -6,6 +6,7 @@ import '../../../../features/auth/signup/services/signup_request.dart';
 import '../failure/failure.dart';
 
 abstract class Repository {
-  Future<Either<Failure,UserCredential>> signUp(SignUpRequest signUpRequest);
-  Future<Either<Failure,UserCredential>> logIn(LoginRequest loginRequest);
+  Future<Either<Failure, UserCredential>> signUp(SignUpRequest signUpRequest);
+  Future<Either<Failure, UserCredential>> logIn(LoginRequest loginRequest);
+  Future<Either<Failure, String>> forgotPassword(String email);
 }

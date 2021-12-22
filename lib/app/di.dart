@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerce/features/auth/forgot_password/services/forgot_password_usecase.dart';
+import 'package:ecommerce/features/auth/forgot_password/viewmodel/forgot_password_viewmodel.dart';
 import '../features/auth/login/viewmodel/login_viewmodel.dart';
 import '../features/auth/signup/viewmodel/signup_viewmodel.dart';
 import '../core/init/network/data_source/remote_data_source.dart';
@@ -58,5 +60,12 @@ initLoginModule() {
   if (!GetIt.I.isRegistered<LoginUseCase>()) {
     instance.registerFactory<LoginUseCase>(() => LoginUseCase(instance()));
     instance.registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
+  }
+}
+
+initForgotPasswordModule() {
+  if(!GetIt.I.isRegistered<ForgotPasswordUseCase>()) {
+    instance.registerFactory<ForgotPasswordUseCase>(() => ForgotPasswordUseCase(instance()));
+    instance.registerFactory<ForgotPasswordViewModel>(() => ForgotPasswordViewModel(instance()));
   }
 }
