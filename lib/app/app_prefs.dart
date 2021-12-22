@@ -77,4 +77,16 @@ class AppPrefences {
       return LIGHT_THEME;
     }
   }
+
+  Future<void> setIsUserLoggedIn() async {
+    _sharedPreferences.setBool(PREFS_KEY_USER_LOGGED_IN, true);
+  }
+
+  Future<bool> isUserLoggedIn() async {
+    return _sharedPreferences.getBool(PREFS_KEY_USER_LOGGED_IN) ?? false;
+  }
+
+  Future<bool> logout() async {
+    return _sharedPreferences.remove(PREFS_KEY_USER_LOGGED_IN);
+  }
 }

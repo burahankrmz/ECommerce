@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../core/init/network/data_source/remote_data_source.dart';
-import '../../core/init/network/error_handler/error_handler.dart';
-import '../../core/init/network/failure/failure.dart';
+import '../core/init/network/data_source/remote_data_source.dart';
+import '../core/init/network/error_handler/error_handler.dart';
+import '../core/init/network/failure/failure.dart';
 import 'package:dartz/dartz.dart';
-import '../../core/init/network/networkinfo/network_info.dart';
-import '../../core/init/network/repository/repository.dart';
-import '../../features/auth/login/services/login_request.dart';
+import '../core/init/network/networkinfo/network_info.dart';
+import '../core/init/network/repository/repository.dart';
+import '../features/auth/login/services/login_request.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../../features/auth/signup/services/signup_request.dart';
+import '../features/auth/signup/services/signup_request.dart';
 
 class RepositoryImpl implements Repository {
   final RemoteDataSource _remoteDataSource;

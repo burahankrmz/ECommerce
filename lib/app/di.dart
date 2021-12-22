@@ -5,7 +5,7 @@ import '../core/init/network/repository/repository.dart';
 import '../core/init/network/services/firebase_services.dart';
 import '../features/auth/login/services/login_usecase.dart';
 import '../features/auth/signup/services/signup_usecase.dart';
-import '../services/repostitory_impl/repository_impl.dart';
+import '../services/repository_impl.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';

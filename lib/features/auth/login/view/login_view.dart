@@ -33,6 +33,17 @@ class _LoginViewState extends State<LoginView> {
   final TextEditingController _passwordEditingController =
       TextEditingController();
   final LoginUseCase _loginUseCase = instance<LoginUseCase>();
+  // final StreamController _flowStateController =
+  //     StreamController<FlowState>.broadcast();
+  // Sink get inputState => _flowStateController.sink;
+  // Stream<FlowState> get outputState =>
+  //     _flowStateController.stream.map((flowState) => flowState);
+
+  @override
+  void initState() {
+    // inputState.add(ContentState());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +51,10 @@ class _LoginViewState extends State<LoginView> {
   }
 
   Widget _buildContentWidget() {
+    return _getContentWidget();
+  }
+
+  Widget _getContentWidget() {
     return Scaffold(
       appBar: _buildAppBar(),
       body: _buildBody(),
@@ -126,16 +141,21 @@ class _LoginViewState extends State<LoginView> {
         height: AppSize.s48,
         title: AppStrings.loginBtn.tr(),
         onPressed: () async {
-
           (await _loginUseCase.execute(LoginUseCaseInput(
                   _emailEditingController.text,
                   _passwordEditingController.text)))
               .fold(
-                  (failure) => {debugPrint(failure.message)},
+                  (failure) => {
+                        debugPrint(failure.message),
+                        // inputState.add(ErrorState(
+                        //     StateRendererType.POPUP_ERROR_STATE, failure.message))
+                      },
                   (data) => {
                         debugPrint(data.user!.uid),
                         _emailEditingController.clear(),
-                        _passwordEditingController.clear()
+                        _passwordEditingController.clear(),
+                        // inputState.add(ErrorState(
+                        //     StateRendererType.POPUP_SUCCESS, "Success"))
                       });
         },
       ),
