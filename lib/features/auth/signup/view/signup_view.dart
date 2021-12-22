@@ -1,12 +1,14 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce/core/widget/auth_elevated_button.dart';
+import 'package:ecommerce/features/auth/signup/viewmodel/signup_viewmodel.dart';
+import 'package:ecommerce/features/state/state_renderer.impl.dart';
+import 'package:flutter/scheduler.dart';
 import '../../../../core/constants/fonts/fonts_manager.dart';
 import '../../../../core/constants/strings/strings_manager.dart';
 import '../../../../core/constants/values/app_sizes.dart';
 import '../../../../core/init/routes/routes_manager.dart';
 import '../../../../core/init/styles/styles_manager.dart';
-import '../../../../core/widget/auth_elevated_button.dart';
-import '../services/signup_usecase.dart';
 import '../../../../product/widgets/buttons/facebook_button.dart';
 import '../../../../product/widgets/buttons/google_button.dart';
 import '../../../../product/widgets/inputs/normal_input_field.dart';
@@ -28,22 +30,62 @@ class SignUpView extends StatefulWidget {
 class _SignUpViewState extends State<SignUpView> {
   final GlobalKey _formkey = GlobalKey<FormState>();
   final AppPrefences _appPrefences = instance<AppPrefences>();
-  final SingUpUseCase _singUpUseCase = instance<SingUpUseCase>();
+  final SignUpViewModel _viewModel = instance<SignUpViewModel>();
+
   final TextEditingController _nameEditingController = TextEditingController();
   final TextEditingController _emailEditingController = TextEditingController();
   final TextEditingController _passwordEditingController =
       TextEditingController();
+
+  _bind() {
+    _viewModel.init();
+    _nameEditingController.addListener(() {
+      _viewModel.setName(_nameEditingController.text);
+    });
+    _emailEditingController.addListener(() {
+      _viewModel.setEmail(_emailEditingController.text);
+    });
+    _passwordEditingController.addListener(() {
+      _viewModel.setPassword(_passwordEditingController.text);
+    });
+    _viewModel.isUserLoggedInSuccessfullyStreamController.stream
+        .listen((isSuccessLoggedIn) {
+      _appPrefences.isUserLoggedIn();
+      SchedulerBinding.instance?.addPostFrameCallback((_) {
+        Navigator.of(context).pushReplacementNamed(Routes.homeRoute);
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    _bind();
+    super.initState();
+  }
 
   @override
   void dispose() {
     _nameEditingController.dispose();
     _emailEditingController.dispose();
     _passwordEditingController.dispose();
+    _viewModel.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    return StreamBuilder<FlowState>(
+        stream: _viewModel.outputState,
+        builder: (context, snapshot) {
+          return snapshot.data?.getScreenWidget(context, _buildContentWidget(),
+                  () {
+                _viewModel.signUp();
+              }) ??
+              _buildContentWidget();
+        });
+  }
+
+  Widget _buildContentWidget() {
     return Scaffold(
       appBar: _buildAppBar(),
       body: SafeArea(
@@ -59,29 +101,48 @@ class _SignUpViewState extends State<SignUpView> {
                   const SizedBox(
                     height: AppSize.s55,
                   ),
-                  CustomTextField(
-                    controller: _nameEditingController,
-                    error: false,
-                    label: AppStrings.name.tr(),
-                    labelError: AppStrings.name.tr(),
+                  Padding(
+                    padding: const CustomPadding.onlyTopP8(),
+                    child: StreamBuilder<String?>(
+                        stream: _viewModel.outputName,
+                        builder: (context, snapshot) {
+                          return CustomTextField(
+                            visibility: _nameEditingController.text.isNotEmpty,
+                            controller: _nameEditingController,
+                            error: snapshot.hasData,
+                            label: AppStrings.name.tr(),
+                            labelError: AppStrings.name.tr(),
+                          );
+                        }),
                   ),
                   Padding(
                     padding: const CustomPadding.onlyTopP8(),
-                    child: CustomTextField(
-                      controller: _emailEditingController,
-                      error: false,
-                      label: AppStrings.email.tr(),
-                      labelError: AppStrings.emailValid.tr(),
-                    ),
+                    child: StreamBuilder<String?>(
+                        stream: _viewModel.outputEmail,
+                        builder: (context, snapshot) {
+                          return CustomTextField(
+                            visibility: _emailEditingController.text.isNotEmpty,
+                            controller: _emailEditingController,
+                            error: snapshot.hasData,
+                            label: AppStrings.email.tr(),
+                            labelError: AppStrings.emailValid.tr(),
+                          );
+                        }),
                   ),
                   Padding(
                     padding: const CustomPadding.onlyTopP8BottomP16(),
-                    child: CustomTextField(
-                      controller: _passwordEditingController,
-                      error: false,
-                      label: AppStrings.password.tr(),
-                      labelError: AppStrings.password.tr(),
-                    ),
+                    child: StreamBuilder<String?>(
+                        stream: _viewModel.outputPassword,
+                        builder: (context, snapshot) {
+                          return CustomTextField(
+                            visibility:
+                                _passwordEditingController.text.isNotEmpty,
+                            controller: _passwordEditingController,
+                            error: snapshot.hasData,
+                            label: AppStrings.password.tr(),
+                            labelError: AppStrings.password.tr(),
+                          );
+                        }),
                   ),
                   _buildAlreadyHaveAnAccountTextBtn(),
                   _buildSignUpBtn(),
@@ -125,9 +186,6 @@ class _SignUpViewState extends State<SignUpView> {
           children: [
             TextButton(
               onPressed: () {
-                _emailEditingController.clear();
-                _passwordEditingController.clear();
-                _nameEditingController.clear();
                 Navigator.pushNamed(context, Routes.loginRoute);
               },
               child: Text(
@@ -168,25 +226,19 @@ class _SignUpViewState extends State<SignUpView> {
     return FadeInLeft(
       child: Padding(
         padding: const CustomPadding.symmetricVerticalp8(),
-        child: AuthElevatedButton(
-          width: double.maxFinite,
-          height: AppSize.s48,
-          title: AppStrings.signupBtn.tr(),
-          onPressed: () async {
-            debugPrint(_emailEditingController.text);
-            (await _singUpUseCase.execute(SingUpUsecaseInput(
-                    _nameEditingController.text,
-                    _emailEditingController.text,
-                    _passwordEditingController.text)))
-                .fold(
-                    (failure) => {debugPrint(failure.message)},
-                    (data) => {
-                          debugPrint(data.user!.uid),
-                          _emailEditingController.clear(),
-                          _passwordEditingController.clear()
-                        });
-          },
-        ),
+        child: StreamBuilder<bool>(
+            stream: _viewModel.outputIsAllValid,
+            builder: (context, snapshot) {
+              return AuthElevatedButton(
+                  width: double.maxFinite,
+                  height: AppSize.s48,
+                  title: AppStrings.signupBtn.tr(),
+                  onPressed: (snapshot.data ?? false)
+                      ? () {
+                          _viewModel.signUp();
+                        }
+                      : null);
+            }),
       ),
     );
   }

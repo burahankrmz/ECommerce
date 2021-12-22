@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerce/features/auth/signup/viewmodel/signup_viewmodel.dart';
 import '../core/init/network/data_source/remote_data_source.dart';
 import '../core/init/network/networkinfo/network_info.dart';
 import '../core/init/network/repository/repository.dart';
@@ -42,11 +43,13 @@ Future<void> initAppModule() async {
   //? repository instance
   instance.registerLazySingleton<Repository>(
       () => RepositoryImpl(instance(), instance(), instance()));
-
-  //? registerusecase
-  instance
-      .registerLazySingleton<SingUpUseCase>(() => SingUpUseCase(instance()));
-
   //? loginusecase
   instance.registerLazySingleton<LoginUseCase>(() => LoginUseCase(instance()));
+}
+
+initSignUpModule() {
+  if(!GetIt.I.isRegistered<SignUpUseCase>()) {
+    instance.registerFactory<SignUpUseCase>(() => SignUpUseCase(instance()));
+  instance.registerFactory<SignUpViewModel>(() => SignUpViewModel(instance()));
+  }
 }

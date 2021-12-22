@@ -10,12 +10,15 @@ class CustomTextField extends StatelessWidget {
   final String label;
   final String labelError;
   final TextEditingController controller;
+  final bool visibility;
 
   const CustomTextField({
     Key? key,
     required this.error,
     required this.label,
-    required this.labelError, required this.controller,
+    required this.labelError,
+    required this.controller,
+    required this.visibility,
   }) : super(key: key);
 
   @override
@@ -45,11 +48,23 @@ class CustomTextField extends StatelessWidget {
                       label,
                     ),
                     border: InputBorder.none,
-                    suffixIcon: Icon(
-                      Icons.check,
-                      color: ColorManager.success,
-                      size: AppSize.s24,
-                    ),
+                    suffixIcon: !error
+                        ? Visibility(
+                            visible: visibility,
+                            child: Icon(
+                              Icons.check,
+                              color: ColorManager.success,
+                              size: AppSize.s24,
+                            ),
+                          )
+                        : Visibility(
+                            visible: visibility,
+                            child: Icon(
+                              Icons.error,
+                              color: ColorManager.error,
+                              size: AppSize.s24,
+                            ),
+                          ),
                   ),
                 ),
               ),

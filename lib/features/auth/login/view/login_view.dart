@@ -33,11 +33,6 @@ class _LoginViewState extends State<LoginView> {
   final TextEditingController _passwordEditingController =
       TextEditingController();
   final LoginUseCase _loginUseCase = instance<LoginUseCase>();
-  // final StreamController _flowStateController =
-  //     StreamController<FlowState>.broadcast();
-  // Sink get inputState => _flowStateController.sink;
-  // Stream<FlowState> get outputState =>
-  //     _flowStateController.stream.map((flowState) => flowState);
 
   @override
   void initState() {
@@ -55,9 +50,15 @@ class _LoginViewState extends State<LoginView> {
   }
 
   Widget _getContentWidget() {
-    return Scaffold(
-      appBar: _buildAppBar(),
-      body: _buildBody(),
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.pushNamed(context, Routes.signUpRoute);
+        return true;
+      },
+      child: Scaffold(
+        appBar: _buildAppBar(),
+        body: _buildBody(),
+      ),
     );
   }
 
@@ -76,6 +77,7 @@ class _LoginViewState extends State<LoginView> {
                   height: context.dynamicHeight(0.09),
                 ),
                 CustomTextField(
+                    visibility: _emailEditingController.text.isNotEmpty,
                     controller: _emailEditingController,
                     error: false,
                     label: AppStrings.email.tr(),
@@ -83,6 +85,7 @@ class _LoginViewState extends State<LoginView> {
                 Padding(
                   padding: const CustomPadding.onlyTopP8(),
                   child: CustomTextField(
+                      visibility: _passwordEditingController.text.isNotEmpty,
                       controller: _passwordEditingController,
                       error: false,
                       label: AppStrings.password.tr(),
@@ -208,7 +211,7 @@ class _LoginViewState extends State<LoginView> {
       automaticallyImplyLeading: false,
       leading: IconButton(
         onPressed: () {
-          Navigator.pop(context);
+          Navigator.pushNamed(context, Routes.signUpRoute);
         },
         icon: const Icon(
           Icons.arrow_back_ios,

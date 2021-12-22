@@ -6,6 +6,7 @@ import 'package:ecommerce/features/auth/signup/freezed_model/signup_freezed_mode
 import 'package:ecommerce/features/auth/signup/services/signup_usecase.dart';
 import 'package:ecommerce/features/state/state_renderer.dart';
 import 'package:ecommerce/features/state/state_renderer.impl.dart';
+import 'package:flutter/material.dart';
 
 class SignUpViewModel extends BaseViewModel
     with SignUpViewModelInputs, SignUpViewModelOutputs {
@@ -16,22 +17,28 @@ class SignUpViewModel extends BaseViewModel
   final StreamController _passwordStreamController =
       StreamController<String>.broadcast();
   final StreamController _isAllValidStreamController =
-      StreamController<bool>.broadcast();
+      StreamController<void>.broadcast();
   StreamController isUserLoggedInSuccessfullyStreamController =
       StreamController<bool>();
 
   var signUpObject = SignUpObject("", "", "");
-  final SingUpUseCase _singUpUseCase;
-  SignUpViewModel(this._singUpUseCase);
+  final SignUpUseCase _signUpUseCase;
+  SignUpViewModel(this._signUpUseCase);
 
   @override
-  void init() {}
+  void init() {
+    inputState.add(ContentState());
+  }
 
   @override
-  singUp() async {
+  signUp() async {
+    debugPrint("A" + signUpObject.name);
+    debugPrint("B" + signUpObject.email);
+    debugPrint("C" + signUpObject.password);
+
     inputState.add(
         LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
-    (await _singUpUseCase.execute(SingUpUsecaseInput(
+    (await _signUpUseCase.execute(SignUpUseCaseInput(
             signUpObject.name, signUpObject.email, signUpObject.password)))
         .fold(
             (failure) => {
@@ -56,25 +63,37 @@ class SignUpViewModel extends BaseViewModel
 
   //? OUTPUTS
   @override
-  Stream<String> get outputName =>
-      _nameStreamController.stream.map((name) => setName(name));
+  Stream<bool> get outputNameIsValid =>
+      _nameStreamController.stream.map((name) => _isNameValid(name));
   @override
-  Stream<String> get outputEmail =>
-      _emailStreamController.stream.map((email) => setEmail(email));
+  Stream<String?> get outputName => outputNameIsValid
+      .map((nameIsValid) => nameIsValid ? null : "Invalid Name");
+
   @override
-  Stream<String> get outputPassword =>
-      _passwordStreamController.stream.map((password) => setPassword(password));
+  Stream<String?> get outputEmail => outputEmailIsValid
+      .map((emailIsValid) => emailIsValid ? null : "Invalid Email");
+
   @override
-  Stream<bool> get outputIsAllValid => _isAllValidStreamController.stream.map((_) => _validateAllInputs());
+  Stream<bool> get outputEmailIsValid =>
+      _emailStreamController.stream.map((email) => isEmailValid(email));
+  @override
+  Stream<String?> get outputPassword => outputPasswordIsValid
+      .map((passwordIsValid) => passwordIsValid ? null : "Invalid Password");
+  @override
+  Stream<bool> get outputPasswordIsValid => _passwordStreamController.stream
+      .map((password) => _isPasswordValid(password));
+  @override
+  Stream<bool> get outputIsAllValid =>
+      _isAllValidStreamController.stream.map((_) => _validateAllInputs());
 
   //? set functions
   @override
   setName(String name) {
     inputName.add(name);
     if (_isNameValid(name)) {
-      signUpObject.copyWith(name: name);
+      signUpObject = signUpObject.copyWith(name: name);
     } else {
-      signUpObject.copyWith(name: "");
+      signUpObject = signUpObject.copyWith(name: "");
     }
     _validate();
   }
@@ -83,7 +102,7 @@ class SignUpViewModel extends BaseViewModel
   setEmail(String email) {
     inputEmail.add(email);
     if (isEmailValid(email)) {
-      signUpObject.copyWith(email: email);
+      signUpObject = signUpObject.copyWith(email: email);
     } else {
       signUpObject.copyWith(email: email);
     }
@@ -94,9 +113,9 @@ class SignUpViewModel extends BaseViewModel
   setPassword(String password) {
     inputPassword.add(password);
     if (_isPasswordValid(password)) {
-      signUpObject.copyWith(password: password);
+      signUpObject = signUpObject.copyWith(password: password);
     } else {
-      signUpObject.copyWith(password: "");
+      signUpObject = signUpObject.copyWith(password: "");
     }
     _validate();
   }
@@ -126,6 +145,7 @@ class SignUpViewModel extends BaseViewModel
     _nameStreamController.close();
     _emailStreamController.close();
     _passwordStreamController.close();
+    _isAllValidStreamController.close();
   }
 }
 
@@ -138,12 +158,15 @@ abstract class SignUpViewModelInputs {
   Sink get inputEmail;
   Sink get inputPassword;
   Sink get inputAllIsValid;
-  singUp();
+  signUp();
 }
 
 abstract class SignUpViewModelOutputs {
-  Stream<String> get outputName;
-  Stream<String> get outputEmail;
-  Stream<String> get outputPassword;
+  Stream<String?> get outputName;
+  Stream<bool> get outputNameIsValid;
+  Stream<String?> get outputEmail;
+  Stream<bool> get outputEmailIsValid;
+  Stream<String?> get outputPassword;
+  Stream<bool> get outputPasswordIsValid;
   Stream<bool> get outputIsAllValid;
 }

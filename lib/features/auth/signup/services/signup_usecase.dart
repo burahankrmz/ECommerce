@@ -5,9 +5,9 @@ import '../../../../core/init/network/usecases/base_usecase.dart';
 import 'signup_request.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class SingUpUseCase implements BaseUsecase<SingUpUsecaseInput, UserCredential> {
+class SignUpUseCase implements BaseUsecase<SignUpUseCaseInput, UserCredential> {
   final Repository _repository;
-  SingUpUseCase(this._repository);
+  SignUpUseCase(this._repository);
   @override
   Future<Either<Failure, UserCredential>> execute(input) async {
     return await _repository
@@ -15,9 +15,9 @@ class SingUpUseCase implements BaseUsecase<SingUpUsecaseInput, UserCredential> {
   }
 }
 
-class SingUpUsecaseInput {
+class SignUpUseCaseInput {
   String name;
   String email;
   String password;
-  SingUpUsecaseInput(this.name, this.email, this.password);
+  SignUpUseCaseInput(this.name, this.email, this.password);
 }

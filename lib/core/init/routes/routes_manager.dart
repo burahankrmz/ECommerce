@@ -1,3 +1,5 @@
+import 'package:ecommerce/app/di.dart';
+import 'package:ecommerce/features/home/view/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -10,6 +12,7 @@ class Routes {
   static const String loginRoute = "/login";
   static const String signUpRoute = "/signUp";
   static const String forgotPasswordRoute = "/forgotPassword";
+  static const String homeRoute = "/homeRoute";
 }
 
 class RouteGenerator {
@@ -18,11 +21,16 @@ class RouteGenerator {
       case Routes.loginRoute:
         return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.signUpRoute:
+        initSignUpModule();
         return PageTransition(
             child: const SignUpView(), type: PageTransitionType.rightToLeft);
       case Routes.forgotPasswordRoute:
         return PageTransition(
-            child: const ForgotPasswordView(), type: PageTransitionType.bottomToTop);
+            child: const ForgotPasswordView(),
+            type: PageTransitionType.bottomToTop);
+      case Routes.homeRoute:
+        return PageTransition(
+            child: const HomePage(), type: PageTransitionType.fade);
       default:
         return undefinedRoute();
     }

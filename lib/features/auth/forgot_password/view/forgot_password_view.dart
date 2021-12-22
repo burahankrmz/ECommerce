@@ -41,6 +41,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                   Padding(
                     padding: const CustomPadding.symmetricVerticalp16(),
                     child: CustomTextField(
+                      visibility: _emailEditingController.text.isNotEmpty,
                       controller: _emailEditingController,
                       error: true,
                       label: AppStrings.email.tr(),
