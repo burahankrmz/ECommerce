@@ -93,6 +93,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
 
   AppBar _buildAppBar() {
     return AppBar(
+      toolbarHeight: AppSize.s44,
       automaticallyImplyLeading: false,
       leading: IconButton(
         onPressed: () {

@@ -1,8 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce/core/widget/auth_elevated_button.dart';
-import 'package:ecommerce/features/auth/signup/viewmodel/signup_viewmodel.dart';
-import 'package:ecommerce/features/state/state_renderer.impl.dart';
+import '../../../../core/widget/auth_elevated_button.dart';
+import '../viewmodel/signup_viewmodel.dart';
+import '../../../state/state_renderer.impl.dart';
 import 'package:flutter/scheduler.dart';
 import '../../../../core/constants/fonts/fonts_manager.dart';
 import '../../../../core/constants/strings/strings_manager.dart';
@@ -88,71 +88,75 @@ class _SignUpViewState extends State<SignUpView> {
   Widget _buildContentWidget() {
     return Scaffold(
       appBar: _buildAppBar(),
-      body: SafeArea(
-        child: Padding(
-          padding: const CustomPadding.pagePadding(),
-          child: SingleChildScrollView(
-            child: Form(
-              key: _formkey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildSignUpText(),
-                  const SizedBox(
-                    height: AppSize.s55,
-                  ),
-                  Padding(
-                    padding: const CustomPadding.onlyTopP8(),
-                    child: StreamBuilder<String?>(
-                        stream: _viewModel.outputName,
-                        builder: (context, snapshot) {
-                          return CustomTextField(
-                            visibility: _nameEditingController.text.isNotEmpty,
-                            controller: _nameEditingController,
-                            error: snapshot.hasData,
-                            label: AppStrings.name.tr(),
-                            labelError: AppStrings.name.tr(),
-                          );
-                        }),
-                  ),
-                  Padding(
-                    padding: const CustomPadding.onlyTopP8(),
-                    child: StreamBuilder<String?>(
-                        stream: _viewModel.outputEmail,
-                        builder: (context, snapshot) {
-                          return CustomTextField(
-                            visibility: _emailEditingController.text.isNotEmpty,
-                            controller: _emailEditingController,
-                            error: snapshot.hasData,
-                            label: AppStrings.email.tr(),
-                            labelError: AppStrings.emailValid.tr(),
-                          );
-                        }),
-                  ),
-                  Padding(
-                    padding: const CustomPadding.onlyTopP8BottomP16(),
-                    child: StreamBuilder<String?>(
-                        stream: _viewModel.outputPassword,
-                        builder: (context, snapshot) {
-                          return CustomTextField(
-                            visibility:
-                                _passwordEditingController.text.isNotEmpty,
-                            controller: _passwordEditingController,
-                            error: snapshot.hasData,
-                            label: AppStrings.password.tr(),
-                            labelError: AppStrings.password.tr(),
-                          );
-                        }),
-                  ),
-                  _buildAlreadyHaveAnAccountTextBtn(),
-                  _buildSignUpBtn(),
-                  const SizedBox(
-                    height: AppSize.s24,
-                  ),
-                  _buildOrLoginTextBtn(),
-                  _buildSocialMediaBtns(),
-                ],
-              ),
+      body: _buildBodyContent(),
+    );
+  }
+
+  SafeArea _buildBodyContent() {
+    return SafeArea(
+      child: Padding(
+        padding: const CustomPadding.pagePadding(),
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formkey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildSignUpText(),
+                const SizedBox(
+                  height: AppSize.s55,
+                ),
+                Padding(
+                  padding: const CustomPadding.onlyTopP8(),
+                  child: StreamBuilder<String?>(
+                      stream: _viewModel.outputName,
+                      builder: (context, snapshot) {
+                        return CustomTextField(
+                          visibility: _nameEditingController.text.isNotEmpty,
+                          controller: _nameEditingController,
+                          error: snapshot.hasData,
+                          label: AppStrings.name.tr(),
+                          labelError: AppStrings.name.tr(),
+                        );
+                      }),
+                ),
+                Padding(
+                  padding: const CustomPadding.onlyTopP8(),
+                  child: StreamBuilder<String?>(
+                      stream: _viewModel.outputEmail,
+                      builder: (context, snapshot) {
+                        return CustomTextField(
+                          visibility: _emailEditingController.text.isNotEmpty,
+                          controller: _emailEditingController,
+                          error: snapshot.hasData,
+                          label: AppStrings.email.tr(),
+                          labelError: AppStrings.emailValid.tr(),
+                        );
+                      }),
+                ),
+                Padding(
+                  padding: const CustomPadding.onlyTopP8BottomP16(),
+                  child: StreamBuilder<String?>(
+                      stream: _viewModel.outputPassword,
+                      builder: (context, snapshot) {
+                        return CustomTextField(
+                          visibility:
+                              _passwordEditingController.text.isNotEmpty,
+                          controller: _passwordEditingController,
+                          error: snapshot.hasData,
+                          label: AppStrings.password.tr(),
+                          labelError: AppStrings.password.tr(),
+                        );
+                      }),
+                ),
+                _buildAlreadyHaveAnAccountTextBtn(),
+                _buildSignUpBtn(),
+                const SizedBox(
+                  height: AppSize.s24,
+                ),
+                _buildOrLoginTextBtn(),
+                _buildSocialMediaBtns(),
+              ],
             ),
           ),
         ),
@@ -254,6 +258,7 @@ class _SignUpViewState extends State<SignUpView> {
 
   AppBar _buildAppBar() {
     return AppBar(
+      toolbarHeight: AppSize.s44,
       automaticallyImplyLeading: false,
       actions: [
         IconButton(

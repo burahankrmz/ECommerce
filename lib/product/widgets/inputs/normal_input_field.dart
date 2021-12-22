@@ -1,7 +1,8 @@
 import 'package:animate_do/animate_do.dart';
-import '../../../core/constants/values/app_sizes.dart';
-import '../../../core/constants/fonts/fonts_manager.dart';
 import 'package:flutter/material.dart';
+
+import '../../../core/constants/fonts/fonts_manager.dart';
+import '../../../core/constants/values/app_sizes.dart';
 import '../../../core/init/color/color_manager.dart';
 import '../../../core/init/styles/styles_manager.dart';
 

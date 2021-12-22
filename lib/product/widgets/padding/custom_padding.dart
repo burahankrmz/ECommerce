@@ -1,5 +1,6 @@
-import '../../../core/constants/values/app_sizes.dart';
 import 'package:flutter/material.dart';
+
+import '../../../core/constants/values/app_sizes.dart';
 
 class CustomPadding extends EdgeInsets {
   const CustomPadding() : super.all(10);

@@ -1,5 +1,5 @@
-import 'package:ecommerce/app/di.dart';
-import 'package:ecommerce/features/home/view/homepage.dart';
+import '../../../app/di.dart';
+import '../../../features/home/view/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -19,6 +19,7 @@ class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.loginRoute:
+        initLoginModule();
         return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.signUpRoute:
         initSignUpModule();

@@ -1,7 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce/features/auth/login/viewmodel/login_viewmodel.dart';
+import 'package:ecommerce/features/state/state_renderer.impl.dart';
+import 'package:flutter/scheduler.dart';
 import '../../../../core/constants/values/app_sizes.dart';
-import '../services/login_usecase.dart';
 import '../../../../product/widgets/buttons/facebook_button.dart';
 import '../../../../product/widgets/buttons/google_button.dart';
 import '../../../../product/widgets/padding/custom_padding.dart';
@@ -32,24 +34,44 @@ class _LoginViewState extends State<LoginView> {
   final TextEditingController _emailEditingController = TextEditingController();
   final TextEditingController _passwordEditingController =
       TextEditingController();
-  final LoginUseCase _loginUseCase = instance<LoginUseCase>();
+  final LoginViewModel _viewModel = instance<LoginViewModel>();
+
+  _bind() {
+    _viewModel.init();
+    _emailEditingController.addListener(() {
+      _viewModel.setEmail(_emailEditingController.text);
+    });
+    _passwordEditingController.addListener(() {
+      _viewModel.setEmail(_passwordEditingController.text);
+    });
+    _viewModel.isUserLoggedInSuccessfullyStreamController.stream
+        .listen((isUserLoggedIN) {
+      SchedulerBinding.instance?.addPostFrameCallback((_) {
+        Navigator.pushReplacementNamed(context, Routes.homeRoute);
+      });
+    });
+  }
 
   @override
   void initState() {
-    // inputState.add(ContentState());
+    _bind();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return _buildContentWidget();
+    return StreamBuilder<FlowState>(
+        stream: _viewModel.outputState,
+        builder: (context, snapshot) {
+          return snapshot.data?.getScreenWidget(context, _buildContentWidget(),
+                  () {
+                _viewModel.login();
+              }) ??
+              _buildContentWidget();
+        });
   }
 
   Widget _buildContentWidget() {
-    return _getContentWidget();
-  }
-
-  Widget _getContentWidget() {
     return WillPopScope(
       onWillPop: () async {
         Navigator.pushNamed(context, Routes.signUpRoute);
@@ -73,8 +95,8 @@ class _LoginViewState extends State<LoginView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildLoginText(),
-                SizedBox(
-                  height: context.dynamicHeight(0.09),
+                const SizedBox(
+                  height: AppSize.s73,
                 ),
                 CustomTextField(
                     visibility: _emailEditingController.text.isNotEmpty,
@@ -83,7 +105,7 @@ class _LoginViewState extends State<LoginView> {
                     label: AppStrings.email.tr(),
                     labelError: AppStrings.emailValid),
                 Padding(
-                  padding: const CustomPadding.onlyTopP8(),
+                  padding: const CustomPadding.symmetricVerticalp8(),
                   child: CustomTextField(
                       visibility: _passwordEditingController.text.isNotEmpty,
                       controller: _passwordEditingController,
@@ -91,12 +113,12 @@ class _LoginViewState extends State<LoginView> {
                       label: AppStrings.password.tr(),
                       labelError: AppStrings.password),
                 ),
-                SizedBox(
-                  height: context.dynamicHeight(0.02),
+                const SizedBox(
+                  height: AppSize.s8,
                 ),
                 _buildForgotPasswordTextBtn(),
-                SizedBox(
-                  height: context.dynamicHeight(0.04),
+                const SizedBox(
+                  height: AppSize.s32,
                 ),
                 _buiildLoginBtn(),
                 SizedBox(
@@ -131,8 +153,12 @@ class _LoginViewState extends State<LoginView> {
     return FadeInLeft(
       child: Align(
         alignment: Alignment.center,
-        child:
-            TextButton(onPressed: () {}, child: Text(AppStrings.orlogin.tr())),
+        child: TextButton(
+            onPressed: () {},
+            child: Text(
+              AppStrings.orlogin.tr(),
+              style: Theme.of(context).textTheme.bodyText1,
+            )),
       ),
     );
   }
@@ -143,24 +169,7 @@ class _LoginViewState extends State<LoginView> {
         width: double.maxFinite,
         height: AppSize.s48,
         title: AppStrings.loginBtn.tr(),
-        onPressed: () async {
-          (await _loginUseCase.execute(LoginUseCaseInput(
-                  _emailEditingController.text,
-                  _passwordEditingController.text)))
-              .fold(
-                  (failure) => {
-                        debugPrint(failure.message),
-                        // inputState.add(ErrorState(
-                        //     StateRendererType.POPUP_ERROR_STATE, failure.message))
-                      },
-                  (data) => {
-                        debugPrint(data.user!.uid),
-                        _emailEditingController.clear(),
-                        _passwordEditingController.clear(),
-                        // inputState.add(ErrorState(
-                        //     StateRendererType.POPUP_SUCCESS, "Success"))
-                      });
-        },
+        onPressed: () async {},
       ),
     );
   }
@@ -208,6 +217,7 @@ class _LoginViewState extends State<LoginView> {
 
   AppBar _buildAppBar() {
     return AppBar(
+      toolbarHeight: AppSize.s44,
       automaticallyImplyLeading: false,
       leading: IconButton(
         onPressed: () {

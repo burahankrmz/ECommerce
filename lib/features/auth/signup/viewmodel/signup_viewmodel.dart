@@ -1,12 +1,11 @@
 import 'dart:async';
 
-import 'package:ecommerce/core/init/base/base_viewmodel.dart';
-import 'package:ecommerce/core/init/functions/functions.dart';
-import 'package:ecommerce/features/auth/signup/freezed_model/signup_freezed_model.dart';
-import 'package:ecommerce/features/auth/signup/services/signup_usecase.dart';
-import 'package:ecommerce/features/state/state_renderer.dart';
-import 'package:ecommerce/features/state/state_renderer.impl.dart';
-import 'package:flutter/material.dart';
+import '../../../../core/init/base/base_viewmodel.dart';
+import '../../../../core/init/functions/functions.dart';
+import '../freezed_model/signup_freezed_model.dart';
+import '../services/signup_usecase.dart';
+import '../../../state/state_renderer.dart';
+import '../../../state/state_renderer.impl.dart';
 
 class SignUpViewModel extends BaseViewModel
     with SignUpViewModelInputs, SignUpViewModelOutputs {
@@ -32,10 +31,6 @@ class SignUpViewModel extends BaseViewModel
 
   @override
   signUp() async {
-    debugPrint("A" + signUpObject.name);
-    debugPrint("B" + signUpObject.email);
-    debugPrint("C" + signUpObject.password);
-
     inputState.add(
         LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
     (await _signUpUseCase.execute(SignUpUseCaseInput(
@@ -140,6 +135,7 @@ class SignUpViewModel extends BaseViewModel
         signUpObject.password.isNotEmpty;
   }
 
+  //? DISPOSE
   @override
   void dispose() {
     _nameStreamController.close();

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:ecommerce/features/state/state_renderer.impl.dart';
+import '../../../features/state/state_renderer.impl.dart';
 
 abstract class BaseViewModel extends BaseViewModelInputs
     with BaseViewModelOutputs {

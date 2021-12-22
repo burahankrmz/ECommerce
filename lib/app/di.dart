@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecommerce/features/auth/signup/viewmodel/signup_viewmodel.dart';
+import 'package:ecommerce/features/auth/login/viewmodel/login_viewmodel.dart';
+import '../features/auth/signup/viewmodel/signup_viewmodel.dart';
 import '../core/init/network/data_source/remote_data_source.dart';
 import '../core/init/network/networkinfo/network_info.dart';
 import '../core/init/network/repository/repository.dart';
@@ -43,13 +44,19 @@ Future<void> initAppModule() async {
   //? repository instance
   instance.registerLazySingleton<Repository>(
       () => RepositoryImpl(instance(), instance(), instance()));
-  //? loginusecase
-  instance.registerLazySingleton<LoginUseCase>(() => LoginUseCase(instance()));
 }
 
 initSignUpModule() {
-  if(!GetIt.I.isRegistered<SignUpUseCase>()) {
+  if (!GetIt.I.isRegistered<SignUpUseCase>()) {
     instance.registerFactory<SignUpUseCase>(() => SignUpUseCase(instance()));
-  instance.registerFactory<SignUpViewModel>(() => SignUpViewModel(instance()));
+    instance
+        .registerFactory<SignUpViewModel>(() => SignUpViewModel(instance()));
+  }
+}
+
+initLoginModule() {
+  if (!GetIt.I.isRegistered<LoginUseCase>()) {
+    instance.registerFactory<LoginUseCase>(() => LoginUseCase(instance()));
+    instance.registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
   }
 }
