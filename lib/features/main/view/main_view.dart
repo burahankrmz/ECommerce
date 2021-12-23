@@ -32,6 +32,7 @@ class _MainViewState extends State<MainView> {
         borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(12), topRight: Radius.circular(12)),
         child: BottomNavigationBar(
+          iconSize: 30,
           onTap: onTap,
           currentIndex: _currentIndex,
           items: [

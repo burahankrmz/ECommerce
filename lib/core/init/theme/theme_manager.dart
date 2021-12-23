@@ -61,11 +61,13 @@ ThemeData getLightTheme() {
       ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
+
       type: BottomNavigationBarType.fixed,
       backgroundColor: ColorManager.white,
       selectedItemColor: ColorManager.primary,
       unselectedItemColor: ColorManager.grey,
     ),
+    
   );
 }
 

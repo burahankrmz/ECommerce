@@ -21,7 +21,7 @@ class _HomePageViewState extends State<HomePageView> {
 
   _randomPage() {
     int min = 0;
-    int max = 2;
+    int max = 3;
     rnd = Random();
     var r = min + rnd.nextInt(max - min);
     return r;
@@ -29,6 +29,7 @@ class _HomePageViewState extends State<HomePageView> {
 
   @override
   Widget build(BuildContext context) {
-    return pages[_randomPage()];
+    //return pages[_randomPage()];
+    return const HomePageView1();
   }
 }

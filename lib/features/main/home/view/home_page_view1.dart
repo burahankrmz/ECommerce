@@ -1,11 +1,10 @@
 import 'package:ecommerce/core/constants/assets/assets_manager.dart';
-import 'package:ecommerce/core/init/color/color_manager.dart';
-import 'package:ecommerce/core/init/styles/styles_manager.dart';
+import 'package:ecommerce/core/extensions/context_extension.dart';
 import 'package:ecommerce/core/widget/auth_elevated_button.dart';
 import 'package:flutter/material.dart';
 
 class HomePageView1 extends StatefulWidget {
-  const HomePageView1({ Key? key }) : super(key: key);
+  const HomePageView1({Key? key}) : super(key: key);
 
   @override
   _HomePageView1State createState() => _HomePageView1State();
@@ -14,42 +13,35 @@ class HomePageView1 extends StatefulWidget {
 class _HomePageView1State extends State<HomePageView1> {
   @override
   Widget build(BuildContext context) {
-     return Stack(
+    return ListView(
       children: [
-        Positioned(
-          top: -44.0,
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Image.asset(ImageAssets.home, fit: BoxFit.contain),
-          ),
-        ),
-        Positioned(
-          top: 310,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 15.0, bottom: 18.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Fashion',
-                  style: getBoldStyle(color: ColorManager.white)
-                      .copyWith(fontSize: 48),
+        SizedBox(
+          height: context.dynamicHeight(0.66),
+          child: Stack(
+            children: [
+              const Positioned(
+                left: 0,
+                right: 0,
+                child: Image(
+                  image: AssetImage(
+                    ImageAssets.home,
+                  ),
+                  fit: BoxFit.fill,
                 ),
-                Text(
-                  'sale',
-                  style: getBoldStyle(color: ColorManager.white)
-                      .copyWith(fontSize: 48),
-                ),
-                AuthElevatedButton(
-                  height: 36,
-                  width: 160,
+              ),
+              Positioned(
+                left: context.dynamicWidth(0.046),
+                top: context.dynamicHeight(0.54),
+                child: AuthElevatedButton(
+                  height: context.dynamicHeight(0.01),
+                  width: context.dynamicWidth(0.38),
                   title: 'Check',
                   onPressed: () {},
-                )
-              ],
-            ),
+                ),
+              ),
+            ],
           ),
-        )
+        ),
       ],
     );
   }
