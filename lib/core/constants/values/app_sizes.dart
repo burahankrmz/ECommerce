@@ -1,5 +1,9 @@
+import 'package:ecommerce/app/app_prefs.dart';
+import 'package:ecommerce/app/di.dart';
+
 class AppSize {
-  static const double s0 = 0;
+
+  static double s0 = _figmaToAppHeight(0);
   static const double s1 = 1;
   static const double s1_5 = 1.5;
   static const double s4 = 4.0;
@@ -27,4 +31,11 @@ class AppSize {
   static const double s140 = 140.0;
   static const double s180 = 180.0;
   static const double s190 = 190.0;
+  static double s376 = _figmaToAppHeight(376);
+
+}
+
+double _figmaToAppHeight(double i) {
+  final AppPrefences _appPrefences = instance<AppPrefences>();
+  return _appPrefences.figmaToAppHeight(i);
 }

@@ -1,6 +1,7 @@
 // ignore: constant_identifier_names
+import 'dart:ui';
+
 import 'package:ecommerce/core/init/lang/language_manager.dart';
-import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: constant_identifier_names
@@ -15,10 +16,16 @@ const String PREFS_KEY_USER_LOGGED_IN = 'PREFS_KEY_USER_LOGGED_IN';
 const String LIGHT_THEME = 'light';
 // ignore: constant_identifier_names
 const String DARK_THEME = 'dark';
-
+// ignore: constant_identifier_names
+const String SCREEN_WIDTH = 'SCREEN_WIDTH';
+// ignore: constant_identifier_names
+const String SCREEN_HEIGHT = 'SCREEN_HEIGHT';
 
 class AppPrefences {
   final SharedPreferences _sharedPreferences;
+  var physicalScreenSize = window.physicalSize;
+  var pixelRatio = window.devicePixelRatio;
+  var padding = window.padding;
   AppPrefences(this._sharedPreferences);
 
   Future<String> getAppLanguage() async {
@@ -88,5 +95,35 @@ class AppPrefences {
 
   Future<bool> logout() async {
     return _sharedPreferences.remove(PREFS_KEY_USER_LOGGED_IN);
+  }
+
+  getScreenPaddingLeftRight() {
+    var paddingLeft = window.padding.left / window.devicePixelRatio;
+    var paddingRight = window.padding.right / window.devicePixelRatio;
+    return paddingLeft + paddingRight;
+  }
+
+  getScreenTopBottom() {
+    var paddingTop = window.padding.top / window.devicePixelRatio;
+    var paddingBottom = window.padding.bottom / window.devicePixelRatio;
+    return paddingTop + paddingBottom;
+  }
+
+  getScreenWidth() {
+    var paddingWidth = getScreenPaddingLeftRight();
+    return ((physicalScreenSize / pixelRatio).width - paddingWidth);
+  }
+
+  getScreenHeight() {
+    var paddingHeight = getScreenTopBottom();
+    return ((physicalScreenSize / pixelRatio).height - paddingHeight);
+  }
+
+  figmaToAppHeight(double val) {
+    return (val * getScreenHeight()) / 812;
+  }
+
+  figmaToAppWidth(double val) {
+    return (val * getScreenWidth()) / 376;
   }
 }

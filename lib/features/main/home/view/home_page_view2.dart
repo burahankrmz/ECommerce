@@ -1,4 +1,5 @@
 import 'package:ecommerce/core/constants/assets/assets_manager.dart';
+import 'package:ecommerce/core/extensions/context_extension.dart';
 import 'package:ecommerce/core/init/color/color_manager.dart';
 import 'package:ecommerce/core/init/styles/styles_manager.dart';
 import 'package:flutter/material.dart';
@@ -13,34 +14,39 @@ class HomePageView2 extends StatefulWidget {
 class _HomePageView2State extends State<HomePageView2> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Positioned(
-          top: 0,
-          child: Container(
-            height: 260,
-            width: MediaQuery.of(context).size.width,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(
-                    ImageAssets.home2,
+    debugPrint(context.s376.toString());
+    return SafeArea(
+      child: ListView(
+        children: [
+          SizedBox(
+            height: context.s376,
+            child: Stack(
+              children: [
+                const Positioned(
+                  left: 0,
+                  right: 0,
+                  child: Image(
+                    image: AssetImage(
+                      ImageAssets.home2,
+                    ),
+                    fit: BoxFit.fill,
                   ),
-                  fit: BoxFit.contain),
+                ),
+                Positioned(
+                  top: context.s136,
+                  left: context.s16,
+                  child: Text(
+                    'Street clothes',
+                    style: getBoldStyle(color: ColorManager.white)
+                        .copyWith(fontSize: context.s34),
+                  ),
+                ),
+
+              ],
             ),
-          ),
-        ),
-        Positioned(
-          top: 158,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 21.0, bottom: 18.0),
-            child: Text(
-              'Street clothes',
-              style: getBoldStyle(color: ColorManager.white)
-                  .copyWith(fontSize: 34),
-            ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }

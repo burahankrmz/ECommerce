@@ -64,8 +64,10 @@ initLoginModule() {
 }
 
 initForgotPasswordModule() {
-  if(!GetIt.I.isRegistered<ForgotPasswordUseCase>()) {
-    instance.registerFactory<ForgotPasswordUseCase>(() => ForgotPasswordUseCase(instance()));
-    instance.registerFactory<ForgotPasswordViewModel>(() => ForgotPasswordViewModel(instance()));
+  if (!GetIt.I.isRegistered<ForgotPasswordUseCase>()) {
+    instance.registerFactory<ForgotPasswordUseCase>(
+        () => ForgotPasswordUseCase(instance()));
+    instance.registerFactory<ForgotPasswordViewModel>(
+        () => ForgotPasswordViewModel(instance()));
   }
 }
