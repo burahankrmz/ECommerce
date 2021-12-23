@@ -1,7 +1,7 @@
 import 'package:ecommerce/core/constants/strings/strings_manager.dart';
 import 'package:ecommerce/features/main/bag/view/bag_page_view.dart';
 import 'package:ecommerce/features/main/favourites/view/favourites_page_view.dart';
-import 'package:ecommerce/features/main/home/view/home_page_view.dart';
+import 'package:ecommerce/features/main/home/view/home_page_view_main.dart';
 import 'package:ecommerce/features/main/profile/view/profile_page_view.dart';
 import 'package:ecommerce/features/main/shop/view/shop_page_view.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -23,16 +23,7 @@ class _MainViewState extends State<MainView> {
     ProfilePageView()
   ];
 
-  // List<String> titles = [
-  //   AppStrings.home.tr(),
-  //   AppStrings.shop.tr(),
-  //   AppStrings.bag.tr(),
-  //   AppStrings.favourites.tr(),
-  //   AppStrings.profile.tr(),
-  // ];
-
   int _currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +49,7 @@ class _MainViewState extends State<MainView> {
                 label: AppStrings.bag.tr()),
             BottomNavigationBarItem(
                 icon: const Icon(Icons.favorite_border_outlined),
-                activeIcon: const Icon(Icons.favorite_border_sharp),
+                activeIcon: const Icon(Icons.favorite_sharp),
                 label: AppStrings.favourites.tr()),
             BottomNavigationBarItem(
                 icon: const Icon(Icons.person_outlined),

@@ -7,6 +7,8 @@ const String JSON_PATH = "assets/json";
 class ImageAssets {
   static const String googleSvg = '$IMAGE_PATH/google.svg';
   static const String facebookSvg = '$IMAGE_PATH/facebook.svg';
+  static const String home = '$IMAGE_PATH/home.png';
+
 }
 
 class JsonAssets {

@@ -45,12 +45,11 @@ class _SignUpViewState extends State<SignUpView> {
                   context, Routes.mainRoute, (route) => false)
             }
           else
-            {Navigator.pushReplacementNamed(context, Routes.signUpRoute)}
+            {_bind()}
         });
   }
 
   _bind() {
-    _userControl();
     _viewModel.init();
     _nameEditingController.addListener(() {
       _viewModel.setName(_nameEditingController.text);
@@ -72,7 +71,7 @@ class _SignUpViewState extends State<SignUpView> {
 
   @override
   void initState() {
-    _bind();
+    _userControl();
     super.initState();
   }
 
