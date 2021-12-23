@@ -37,4 +37,12 @@ class AppStrings {
   static const String ok = "ok";
   static const String retryAgain = "retryAgain";
   static const String sentForgotMail = "sentForgotMail";
+
+  //? MAIN VIEW BOTTOM STRINGS
+  static const String home = "home";
+  static const String shop = "shop";
+  static const String bag = "bag";
+  static const String favourites = "favourites";
+  static const String profile = "profile";
+
 }

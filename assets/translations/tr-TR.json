@@ -30,5 +30,10 @@
     "loading": "Yükleniyor...",
     "ok": "Tamam",
     "retryAgain": "Tekrar Dene",
-    "sentForgotMail": "Yeni bir şifre oluşturabilmen için sana mail gönderdik. 5 saniye içerisinde Giriş Sayfasına Yönlendiriliceksin."
+    "sentForgotMail": "Yeni bir şifre oluşturabilmen için sana mail gönderdik. 5 saniye içerisinde Giriş Sayfasına Yönlendiriliceksin.",
+    "home": "Anasayfa",
+    "shop": "Alışveriş",
+    "bag": "Çanta",
+    "favourites": "Favoriler",
+    "profile": "Profil"
 }

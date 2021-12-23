@@ -39,6 +39,7 @@ class LoginViewModel extends BaseViewModel
                 },
             (data) => {
                   inputState.add(ContentState()),
+                  
                   isUserLoggedInSuccessfullyStreamController.add(true)
                 });
   }

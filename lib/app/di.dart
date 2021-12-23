@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce/features/auth/forgot_password/services/forgot_password_usecase.dart';
 import 'package:ecommerce/features/auth/forgot_password/viewmodel/forgot_password_viewmodel.dart';
+import 'package:ecommerce/repository/repository_impl.dart';
 import '../features/auth/login/viewmodel/login_viewmodel.dart';
 import '../features/auth/signup/viewmodel/signup_viewmodel.dart';
 import '../core/init/network/data_source/remote_data_source.dart';
@@ -9,7 +10,6 @@ import '../core/init/network/repository/repository.dart';
 import '../core/init/network/services/firebase_services.dart';
 import '../features/auth/login/services/login_usecase.dart';
 import '../features/auth/signup/services/signup_usecase.dart';
-import '../services/repository_impl.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';

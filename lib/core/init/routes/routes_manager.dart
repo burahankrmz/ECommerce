@@ -1,5 +1,6 @@
+import 'package:ecommerce/features/main/view/main_view.dart';
+
 import '../../../app/di.dart';
-import '../../../features/home/view/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -12,7 +13,7 @@ class Routes {
   static const String loginRoute = "/login";
   static const String signUpRoute = "/signUp";
   static const String forgotPasswordRoute = "/forgotPassword";
-  static const String homeRoute = "/homeRoute";
+  static const String mainRoute = "/mainRoute";
 }
 
 class RouteGenerator {
@@ -30,9 +31,9 @@ class RouteGenerator {
         return PageTransition(
             child: const ForgotPasswordView(),
             type: PageTransitionType.bottomToTop);
-      case Routes.homeRoute:
+      case Routes.mainRoute:
         return PageTransition(
-            child: const HomePage(), type: PageTransitionType.fade);
+            child: const MainView(), type: PageTransitionType.fade);
       default:
         return undefinedRoute();
     }

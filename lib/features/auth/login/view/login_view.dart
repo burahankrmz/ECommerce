@@ -46,8 +46,9 @@ class _LoginViewState extends State<LoginView> {
     });
     _viewModel.isUserLoggedInSuccessfullyStreamController.stream
         .listen((isUserLoggedIN) {
+      _appPrefences.setIsUserLoggedIn();
       SchedulerBinding.instance?.addPostFrameCallback((_) {
-        Navigator.pushReplacementNamed(context, Routes.homeRoute);
+        Navigator.pushReplacementNamed(context, Routes.mainRoute);
       });
     });
   }

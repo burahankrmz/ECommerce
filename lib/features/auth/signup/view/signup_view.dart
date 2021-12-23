@@ -37,7 +37,20 @@ class _SignUpViewState extends State<SignUpView> {
   final TextEditingController _passwordEditingController =
       TextEditingController();
 
+  _userControl() async {
+    await _appPrefences.isUserLoggedIn().then((isUserLoggedIn) => {
+          if (isUserLoggedIn)
+            {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, Routes.mainRoute, (route) => false)
+            }
+          else
+            {Navigator.pushReplacementNamed(context, Routes.signUpRoute)}
+        });
+  }
+
   _bind() {
+    _userControl();
     _viewModel.init();
     _nameEditingController.addListener(() {
       _viewModel.setName(_nameEditingController.text);
@@ -50,9 +63,9 @@ class _SignUpViewState extends State<SignUpView> {
     });
     _viewModel.isUserLoggedInSuccessfullyStreamController.stream
         .listen((isSuccessLoggedIn) {
-      _appPrefences.isUserLoggedIn();
+      _appPrefences.setIsUserLoggedIn();
       SchedulerBinding.instance?.addPostFrameCallback((_) {
-        Navigator.of(context).pushReplacementNamed(Routes.homeRoute);
+        Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
       });
     });
   }

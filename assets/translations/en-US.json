@@ -29,5 +29,10 @@
     "loading": "Loading...",
     "ok": "Okey",
     "retryAgain": "Try Again",
-    "sentForgotMail": "We sent you an email for you can create new password. You will be redirect Login Page in a 5 seconds."
+    "sentForgotMail": "We sent you an email for you can create new password. You will be redirect Login Page in a 5 seconds.",
+    "home": "Home",
+    "shop": "Shop",
+    "bag": "Bag",
+    "favourites": "Favourites",
+    "profile": "Profile"
 }
