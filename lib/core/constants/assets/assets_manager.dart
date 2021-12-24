@@ -12,6 +12,9 @@ class ImageAssets {
   static const String home3 = '$IMAGE_PATH/home3.png';
   static const String home4 = '$IMAGE_PATH/home4.png';
   static const String home5 = '$IMAGE_PATH/home5.png';
+  static const String product1 = '$IMAGE_PATH/product1.png';
+  static const String product2 = '$IMAGE_PATH/product2.png';
+  static const String product3 = '$IMAGE_PATH/product3.png';
 }
 
 class JsonAssets {

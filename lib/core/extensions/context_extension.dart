@@ -8,14 +8,25 @@ extension ContextExtension on BuildContext {
       (val * MediaQuery.of(this).size.width) / 375;
   double figmaToAppHeight(double val) =>
       (val * MediaQuery.of(this).size.height) / 812;
+  // double figmaToAppWidth(double val) =>
+  //     (val * 392) / 375;
+  // double figmaToAppHeight(double val) =>
+  //     (val * 872) / 812;
   ThemeData get theme => Theme.of(this);
 }
 
 extension AppHeight on BuildContext {
+  double get h8 => figmaToAppHeight(8);
+  double get h11 => figmaToAppHeight(11);
   double get h13 => figmaToAppHeight(13);
+  double get h14 => figmaToAppHeight(14);
+  double get h15 => figmaToAppHeight(15);
   double get h16 => figmaToAppHeight(16);
   double get h18 => figmaToAppHeight(18);
+  double get h22 => figmaToAppHeight(22);
+  double get h24 => figmaToAppHeight(24);
   double get h32 => figmaToAppHeight(32);
+  double get h33 => figmaToAppHeight(33);
   double get h34 => figmaToAppHeight(34);
   double get h36 => figmaToAppHeight(36);
   double get h48 => figmaToAppHeight(48);
@@ -34,10 +45,12 @@ extension AppHeight on BuildContext {
   double get h175 => figmaToAppHeight(175);
   double get h176 => figmaToAppHeight(176);
   double get h177 => figmaToAppHeight(177);
-  double get h178 => figmaToAppHeight(178.4);
+  double get h178 => figmaToAppHeight(178);
+  double get h184 => figmaToAppHeight(184);
   double get h186 => figmaToAppHeight(186);
   double get h187 => figmaToAppHeight(187);
   double get h188 => figmaToAppHeight(188);
+  double get h260 => figmaToAppHeight(260);
   double get h305 => figmaToAppHeight(305);
   double get h354 => figmaToAppHeight(354);
   double get h366 => figmaToAppHeight(366);
@@ -49,18 +62,24 @@ extension AppHeight on BuildContext {
 }
 
 extension AppWidth on BuildContext {
+  double get w6 => figmaToAppWidth(6);
+  double get w8 => figmaToAppWidth(8);
+  double get w10 => figmaToAppWidth(10);
   double get w13 => figmaToAppWidth(13);
   double get w16 => figmaToAppWidth(16);
   double get w18 => figmaToAppWidth(18);
   double get w32 => figmaToAppWidth(32);
   double get w34 => figmaToAppWidth(34);
   double get w36 => figmaToAppWidth(36);
+  double get w40 => figmaToAppWidth(40);
   double get w48 => figmaToAppWidth(48);
   double get w59 => figmaToAppWidth(59);
   double get w64 => figmaToAppWidth(64);
   double get w92 => figmaToAppWidth(92);
   double get w116 => figmaToAppWidth(116);
   double get w136 => figmaToAppWidth(136);
+  double get w148 => figmaToAppWidth(148);
+  double get w150 => figmaToAppWidth(150);
   double get w154 => figmaToAppWidth(154);
   double get w160 => figmaToAppWidth(160);
   double get w170 => figmaToAppWidth(170);
@@ -111,4 +130,3 @@ extension PaddingExtension on BuildContext {
   EdgeInsets get paddingHighVertical =>
       EdgeInsets.symmetric(vertical: dynamicHeight(0.04));
 }
-
