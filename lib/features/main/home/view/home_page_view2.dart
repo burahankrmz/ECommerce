@@ -14,12 +14,11 @@ class HomePageView2 extends StatefulWidget {
 class _HomePageView2State extends State<HomePageView2> {
   @override
   Widget build(BuildContext context) {
-    debugPrint(context.s376.toString());
     return SafeArea(
       child: ListView(
         children: [
           SizedBox(
-            height: context.s376,
+            height: context.h376,
             child: Stack(
               children: [
                 const Positioned(
@@ -33,12 +32,12 @@ class _HomePageView2State extends State<HomePageView2> {
                   ),
                 ),
                 Positioned(
-                  top: context.s136,
-                  left: context.s16,
+                  top: context.h136,
+                  left: context.w16,
                   child: Text(
                     'Street clothes',
                     style: getBoldStyle(color: ColorManager.white)
-                        .copyWith(fontSize: context.s34),
+                        .copyWith(fontSize: context.h34),
                   ),
                 ),
 

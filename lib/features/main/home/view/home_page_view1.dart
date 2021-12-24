@@ -19,7 +19,7 @@ class _HomePageView1State extends State<HomePageView1> {
       child: ListView(
         children: [
           SizedBox(
-            height: context.s536,
+            height: context.h536,
             child: Stack(
               children: [
                 const Positioned(
@@ -33,30 +33,30 @@ class _HomePageView1State extends State<HomePageView1> {
                   ),
                 ),
                 Positioned(
-                  top: context.s354,
-                  left: context.s16,
+                  top: context.h354,
+                  left: context.w16,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Fashion',
                         style: getBoldStyle(color: ColorManager.white)
-                            .copyWith(fontSize: context.s48),
+                            .copyWith(fontSize: context.h48),
                       ),
                       Text(
                         'sale',
                         style: getBoldStyle(color: ColorManager.white)
-                            .copyWith(fontSize: context.s48),
+                            .copyWith(fontSize: context.h48),
                       ),
                     ],
                   ),
                 ),
                 Positioned(
-                  top: context.s466,
-                  left: context.s16,
+                  top: context.h466,
+                  left: context.w16,
                   child: AuthElevatedButton(
-                    width: context.s160,
-                    height: context.s36,
+                    width: context.h160,
+                    height: context.w36,
                     title: 'Check',
                     onPressed: () {},
                   ),

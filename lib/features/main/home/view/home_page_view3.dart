@@ -18,7 +18,7 @@ class _HomePageView3State extends State<HomePageView3> {
       child: ListView(
         children: [
           SizedBox(
-            height: context.s366,
+            height: context.h366,
             child: Stack(
               children: [
                 const Positioned(
@@ -30,16 +30,16 @@ class _HomePageView3State extends State<HomePageView3> {
                     image: AssetImage(
                       ImageAssets.home3,
                     ),
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                   ),
                 ),
                 Positioned(
-                  top: context.s305,
-                  right: context.s18,
+                  top: context.h305,
+                  right: context.w18,
                   child: Text(
                     'New collection',
                     style: getBoldStyle(color: ColorManager.white)
-                        .copyWith(fontSize: context.s34),
+                        .copyWith(fontSize: context.h34),
                   ),
                 ),
               ],
@@ -50,13 +50,13 @@ class _HomePageView3State extends State<HomePageView3> {
               Column(
                 children: [
                   SizedBox(
-                    height: context.s186,
-                    width: context.screenWidthHalf,
+                    height: context.h186,
+                    width: context.w187,
                     child: Stack(
                       children: [
                         Positioned(
-                            top: context.s59,
-                            left: context.s16,
+                            top: context.h59,
+                            left: context.w16,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -64,13 +64,13 @@ class _HomePageView3State extends State<HomePageView3> {
                                   'Summer',
                                   style:
                                       getBoldStyle(color: ColorManager.primary)
-                                          .copyWith(fontSize: context.s34),
+                                          .copyWith(fontSize: context.h34),
                                 ),
                                 Text(
                                   'sale',
                                   style:
                                       getBoldStyle(color: ColorManager.primary)
-                                          .copyWith(fontSize: context.s34),
+                                          .copyWith(fontSize: context.h34),
                                 ),
                               ],
                             ))
@@ -78,8 +78,8 @@ class _HomePageView3State extends State<HomePageView3> {
                     ),
                   ),
                   SizedBox(
-                    height: context.s186,
-                    width: context.screenWidthHalf,
+                    height: context.h186,
+                    width: context.w187,
                     child: Stack(
                       children: [
                         const Positioned(
@@ -91,16 +91,16 @@ class _HomePageView3State extends State<HomePageView3> {
                             image: AssetImage(
                               ImageAssets.home4,
                             ),
-                            fit: BoxFit.cover,
+                            fit: BoxFit.fill,
                           ),
                         ),
                         Positioned(
-                          top: context.s116,
-                          left: context.s13,
+                          top: context.h116,
+                          left: context.w13,
                           child: Text(
                             'Black',
                             style: getBoldStyle(color: ColorManager.white)
-                                .copyWith(fontSize: context.s34),
+                                .copyWith(fontSize: context.h34),
                           ),
                         ),
                       ],
@@ -109,8 +109,8 @@ class _HomePageView3State extends State<HomePageView3> {
                 ],
               ),
               SizedBox(
-                height: context.s374,
-                width: context.screenWidthHalf,
+                height: context.h374,
+                width: context.w188,
                 child: Stack(
                   children: [
                     const Positioned(
@@ -122,24 +122,24 @@ class _HomePageView3State extends State<HomePageView3> {
                         image: AssetImage(
                           ImageAssets.home5,
                         ),
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fill,
                       ),
                     ),
                     Positioned(
-                      top: context.s154,
-                      right: context.s18,
+                      top: context.h154,
+                      right: context.w18,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             'Men' "'" "s",
                             style: getBoldStyle(color: ColorManager.white)
-                                .copyWith(fontSize: context.s34),
+                                .copyWith(fontSize: context.h34),
                           ),
                           Text(
                             'hoodies',
                             style: getBoldStyle(color: ColorManager.white)
-                                .copyWith(fontSize: context.s34),
+                                .copyWith(fontSize: context.h34),
                           ),
                         ],
                       ),
