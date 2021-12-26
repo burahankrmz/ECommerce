@@ -16,6 +16,8 @@ extension ContextExtension on BuildContext {
 }
 
 extension AppHeight on BuildContext {
+  double get h5 => figmaToAppHeight(5);
+  double get h7 => figmaToAppHeight(7);
   double get h8 => figmaToAppHeight(8);
   double get h11 => figmaToAppHeight(11);
   double get h13 => figmaToAppHeight(13);
@@ -59,6 +61,7 @@ extension AppHeight on BuildContext {
   double get h376 => figmaToAppHeight(376);
   double get h466 => figmaToAppHeight(466);
   double get h536 => figmaToAppHeight(536);
+  double get h580 => figmaToAppHeight(580);
 }
 
 extension AppWidth on BuildContext {

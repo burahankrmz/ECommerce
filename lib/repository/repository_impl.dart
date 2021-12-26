@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce/core/constants/strings/strings_manager.dart';
+import 'package:ecommerce/features/main/home/model/product_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 import '../core/init/network/data_source/remote_data_source.dart';
 import '../core/init/network/error_handler/error_handler.dart';
@@ -11,6 +13,7 @@ import '../core/init/network/repository/repository.dart';
 import '../features/auth/login/services/login_request.dart';
 import '../features/auth/signup/services/signup_request.dart';
 import 'package:easy_localization/easy_localization.dart';
+import '../core/init/network/mapper/mappers.dart';
 
 class RepositoryImpl implements Repository {
   final RemoteDataSource _remoteDataSource;
@@ -61,11 +64,29 @@ class RepositoryImpl implements Repository {
     if (await _networkInfo.isConnected) {
       try {
         await _remoteDataSource.forgotPassword(email);
-        return  Right(AppStrings.sentForgotMail.tr());
+        return Right(AppStrings.sentForgotMail.tr());
       } catch (error) {
-        return left(ErrorHandler.handle(error).failure);
+        return Left(ErrorHandler.handle(error).failure);
       }
     }
-    return left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+  }
+
+  @override
+  Future<Either<Failure, Products>> getHome1Products() async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final response = await _remoteDataSource
+            .getHome1Products()
+            .whenComplete(() => debugPrint("BASARILI"));
+            debugPrint(response.productResponseData.toString());
+        debugPrint("BURAYA GIRDIM BEN");
+        return Right(response.toDomain());
+      } catch (error) {
+        debugPrint("ERRORKE");
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    }
+    return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
   }
 }

@@ -1,4 +1,6 @@
 import 'dart:math';
+import 'package:ecommerce/app/di.dart';
+import 'package:ecommerce/core/init/network/services/firebase_services.dart';
 import 'package:ecommerce/features/main/home/view/home_page_view1.dart';
 import 'package:ecommerce/features/main/home/view/home_page_view2.dart';
 import 'package:ecommerce/features/main/home/view/home_page_view3.dart';
@@ -19,6 +21,7 @@ class _HomePageViewState extends State<HomePageView> {
     const HomePageView3(),
   ];
 
+  // ignore: unused_element
   _randomPage() {
     int min = 0;
     int max = 3;
@@ -29,7 +32,6 @@ class _HomePageViewState extends State<HomePageView> {
 
   @override
   Widget build(BuildContext context) {
-    return pages[_randomPage()];
-    //return const HomePageView1();
+    return const HomePageView1();
   }
 }

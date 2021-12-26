@@ -32,6 +32,7 @@ class RouteGenerator {
             child: const ForgotPasswordView(),
             type: PageTransitionType.bottomToTop);
       case Routes.mainRoute:
+        initHomeModule();
         return PageTransition(
             child: const MainView(), type: PageTransitionType.fade);
       default:

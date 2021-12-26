@@ -347,6 +347,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  flutter_rating_bar:
+    dependency: "direct main"
+    description:
+      name: flutter_rating_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0"
+  flutter_rating_stars:
+    dependency: "direct main"
+    description:
+      name: flutter_rating_stars
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3+4"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -630,6 +644,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1+1"
+  rxdart:
+    dependency: "direct main"
+    description:
+      name: rxdart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.27.3"
   shared_preferences:
     dependency: "direct main"
     description:

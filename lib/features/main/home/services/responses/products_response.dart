@@ -2,29 +2,18 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'products_response.g.dart';
 
-@JsonSerializable()
 class ProductSizesResponse {
-  @JsonKey(name: "sizes")
   String? size;
   ProductSizesResponse(this.size);
-
-  Map<String, dynamic> toJson() => _$ProductSizesResponseToJson(this);
-  factory ProductSizesResponse.fromJson(Map<String, dynamic> json) =>
-      _$ProductSizesResponseFromJson(json);
 }
 
-@JsonSerializable()
 class ProductColorsResponse {
-  @JsonKey(name: "colors")
   String? color;
   ProductColorsResponse(this.color);
-  Map<String, dynamic> toJson() => _$ProductColorsResponseToJson(this);
-  factory ProductColorsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ProductColorsResponseFromJson(json);
 }
 
 @JsonSerializable()
-class ProductResponse {
+class ProductResponseData {
   @JsonKey(name: "product_id")
   String? pid;
   @JsonKey(name: "title")
@@ -35,16 +24,22 @@ class ProductResponse {
   double? price;
   @JsonKey(name: "discount_price")
   double? discPrice;
-  @JsonKey(name: "imageUrl")
+  @JsonKey(name: "image_url")
   String? productUrl;
   @JsonKey(name: "sizes")
-  List<ProductSizesResponse>? sizes;
+  List? sizes;
   @JsonKey(name: "colors")
-  List<ProductColorsResponse>? colors;
-  ProductResponse(this.pid, this.title, this.desc, this.price, this.discPrice,
-      this.productUrl, this.sizes, this.colors);
+  List? colors;
 
-  Map<String, dynamic> toJson() => _$ProductResponseToJson(this);
-  factory ProductResponse.fromJson(Map<String, dynamic> json) =>
-      _$ProductResponseFromJson(json);
+  ProductResponseData(this.pid, this.title, this.desc, this.price,
+      this.discPrice, this.productUrl, this.sizes, this.colors);
+
+  Map<String, dynamic> toJson() => _$ProductResponseDataToJson(this);
+  factory ProductResponseData.fromJson(Map<String, dynamic> json) =>
+      _$ProductResponseDataFromJson(json);
+}
+
+class ProductResponse {
+  List<ProductResponseData>? productResponseData;
+  ProductResponse(this.productResponseData);
 }

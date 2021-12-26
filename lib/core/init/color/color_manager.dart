@@ -12,6 +12,7 @@ class ColorManager {
   static Color errorTextfield = HexColor.fromHex("#F01F0E");
   static Color saleHot = HexColor.fromHex("#DB3022");
   static Color black1 = HexColor.fromHex("#000000");
+  static Color star = HexColor.fromHex("#FFBA49");
 }
 
 class ColorManagerDark {

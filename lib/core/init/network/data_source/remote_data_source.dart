@@ -1,3 +1,4 @@
+import 'package:ecommerce/features/main/home/services/responses/products_response.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../../features/auth/login/services/login_request.dart';
@@ -8,6 +9,7 @@ abstract class RemoteDataSource {
   Future<UserCredential> signUp(SignUpRequest signUpRequest);
   Future<UserCredential> logIn(LoginRequest loginRequest);
   Future<void> forgotPassword(String email);
+  Future<ProductResponse> getHome1Products();
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -28,5 +30,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<void> forgotPassword(String email) async {
     return await _firebaseServices.forgotPassword(email);
+  }
+
+  @override
+  Future<ProductResponse> getHome1Products() async{
+    return await _firebaseServices.getHomeProducts();
   }
 }

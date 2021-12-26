@@ -6,55 +6,27 @@ part of 'products_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ProductSizesResponse _$ProductSizesResponseFromJson(
-        Map<String, dynamic> json) =>
-    ProductSizesResponse(
-      json['sizes'] as String?,
-    );
-
-Map<String, dynamic> _$ProductSizesResponseToJson(
-        ProductSizesResponse instance) =>
-    <String, dynamic>{
-      'sizes': instance.size,
-    };
-
-ProductColorsResponse _$ProductColorsResponseFromJson(
-        Map<String, dynamic> json) =>
-    ProductColorsResponse(
-      json['colors'] as String?,
-    );
-
-Map<String, dynamic> _$ProductColorsResponseToJson(
-        ProductColorsResponse instance) =>
-    <String, dynamic>{
-      'colors': instance.color,
-    };
-
-ProductResponse _$ProductResponseFromJson(Map<String, dynamic> json) =>
-    ProductResponse(
+ProductResponseData _$ProductResponseDataFromJson(Map<String, dynamic> json) =>
+    ProductResponseData(
       json['product_id'] as String?,
       json['title'] as String?,
       json['description'] as String?,
       (json['price'] as num?)?.toDouble(),
       (json['discount_price'] as num?)?.toDouble(),
-      json['imageUrl'] as String?,
-      (json['sizes'] as List<dynamic>?)
-          ?.map((e) => ProductSizesResponse.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      (json['colors'] as List<dynamic>?)
-          ?.map(
-              (e) => ProductColorsResponse.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      json['image_url'] as String?,
+      json['sizes'] as List<dynamic>?,
+      json['colors'] as List<dynamic>?,
     );
 
-Map<String, dynamic> _$ProductResponseToJson(ProductResponse instance) =>
+Map<String, dynamic> _$ProductResponseDataToJson(
+        ProductResponseData instance) =>
     <String, dynamic>{
       'product_id': instance.pid,
       'title': instance.title,
       'description': instance.desc,
       'price': instance.price,
       'discount_price': instance.discPrice,
-      'imageUrl': instance.productUrl,
+      'image_url': instance.productUrl,
       'sizes': instance.sizes,
       'colors': instance.colors,
     };

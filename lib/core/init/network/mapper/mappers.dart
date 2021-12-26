@@ -22,27 +22,28 @@ extension ProductColorsResponseMapper on ProductColorsResponse? {
   }
 }
 
-extension ProductResponseMapper on ProductResponse? {
-  Product toDomain() {
-    List<Colors> mappedColors =
-        (this?.colors?.map((colors) => colors.toDomain()) ??
-                const Iterable.empty())
-            .cast<Colors>()
-            .toList();
-    List<Sizes> mappedSizes =
-        (this?.sizes?.map((sizes) => sizes.toDomain()) ??
-                const Iterable.empty())
-            .cast<Sizes>()
-            .toList();
-    return Product(
+extension ProductResponseDataMapper on ProductResponseData? {
+  ProductData toDomain() {
+    return ProductData(
       this?.pid?.orEmpty() ?? EMPTY,
       this?.title?.orEmpty() ?? EMPTY,
       this?.desc?.orEmpty() ?? EMPTY,
       this?.price?.orDoubleZero() ?? DOUBLEZERO,
       this?.discPrice?.orDoubleZero() ?? DOUBLEZERO,
       this?.productUrl?.orEmpty() ?? EMPTY,
-      mappedSizes,
-      mappedColors,
+      this?.sizes ?? [],
+      this?.colors ?? [],
     );
+  }
+}
+
+extension ProductResponseMapper on ProductResponse? {
+  Products toDomain() {
+    List<ProductData> mappedServices =
+        (this?.productResponseData?.map((productResponseData) => productResponseData.toDomain()) ??
+                const Iterable.empty())
+            .cast<ProductData>()
+            .toList();
+    return Products(mappedServices);
   }
 }

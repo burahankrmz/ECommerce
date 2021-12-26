@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce/features/auth/forgot_password/services/forgot_password_usecase.dart';
 import 'package:ecommerce/features/auth/forgot_password/viewmodel/forgot_password_viewmodel.dart';
+import 'package:ecommerce/features/main/home/services/usecase/home1_usecase.dart';
+import 'package:ecommerce/features/main/home/viewmodel/home_page1_viewmodel.dart';
 import 'package:ecommerce/repository/repository_impl.dart';
 import '../features/auth/login/viewmodel/login_viewmodel.dart';
 import '../features/auth/signup/viewmodel/signup_viewmodel.dart';
@@ -37,7 +39,7 @@ Future<void> initAppModule() async {
 
   //? firebase service
   instance.registerLazySingleton<FirebaseServices>(
-      () => FirebaseServices(instance(),instance()));
+      () => FirebaseServices(instance(), instance()));
 
   //? remote data source instance
   instance.registerLazySingleton<RemoteDataSource>(
@@ -69,5 +71,13 @@ initForgotPasswordModule() {
         () => ForgotPasswordUseCase(instance()));
     instance.registerFactory<ForgotPasswordViewModel>(
         () => ForgotPasswordViewModel(instance()));
+  }
+}
+
+initHomeModule() {
+  if (!GetIt.I.isRegistered<HomeUseCase>()) {
+    instance.registerFactory<HomeUseCase>(() => HomeUseCase(instance()));
+    instance.registerFactory<HomePage1ViewModel>(
+        () => HomePage1ViewModel(instance()));
   }
 }
