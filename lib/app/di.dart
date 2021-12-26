@@ -37,7 +37,7 @@ Future<void> initAppModule() async {
 
   //? firebase service
   instance.registerLazySingleton<FirebaseServices>(
-      () => FirebaseServices(instance()));
+      () => FirebaseServices(instance(),instance()));
 
   //? remote data source instance
   instance.registerLazySingleton<RemoteDataSource>(

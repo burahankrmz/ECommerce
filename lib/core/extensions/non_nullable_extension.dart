@@ -1,0 +1,32 @@
+import 'package:ecommerce/core/init/network/mapper/mappers.dart';
+import '../init/network/mapper/mappers.dart';
+
+extension NonNullString on String? {
+  String orEmpty() {
+    if (this == null) {
+      return EMPTY;
+    } else {
+      return this!;
+    }
+  }
+}
+
+extension NonNullInt on int? {
+  int orZero() {
+    if (this == null) {
+      return ZERO;
+    } else {
+      return this!;
+    }
+  }
+}
+
+extension NonNullDouble on double? {
+  double orDoubleZero() {
+    if (this == null) {
+      return DOUBLEZERO;
+    } else {
+      return this!;
+    }
+  }
+}
