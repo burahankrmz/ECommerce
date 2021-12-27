@@ -16,6 +16,8 @@ class ProductColorsResponse {
 class ProductResponseData {
   @JsonKey(name: "product_id")
   String? pid;
+  @JsonKey(name: "brand")
+  String? brand;
   @JsonKey(name: "title")
   String? title;
   @JsonKey(name: "description")
@@ -31,7 +33,7 @@ class ProductResponseData {
   @JsonKey(name: "colors")
   List? colors;
 
-  ProductResponseData(this.pid, this.title, this.desc, this.price,
+  ProductResponseData(this.pid,this.brand, this.title, this.desc, this.price,
       this.discPrice, this.productUrl, this.sizes, this.colors);
 
   Map<String, dynamic> toJson() => _$ProductResponseDataToJson(this);

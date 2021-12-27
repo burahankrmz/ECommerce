@@ -34,5 +34,12 @@
     "shop": "Shop",
     "bag": "Bag",
     "favourites": "Favorites",
-    "profile": "Profile"
+    "profile": "Profile",
+    "fashion": "Fashion",
+    "sale": "sale",
+    "newTextTitle": "New",
+    "newText": "NEW",
+    "neverSeen": "You've never seen it before",
+    "viewAllTxtBtn": "View all",
+    "checkBtn": "Check"
 }

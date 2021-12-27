@@ -10,6 +10,7 @@ class Sizes {
 
 class ProductData {
   String pid;
+  String brand;
   String title;
   String desc;
   double price;
@@ -17,8 +18,8 @@ class ProductData {
   String productUrl;
   List sizes;
   List colors;
-  ProductData(this.pid, this.title, this.desc, this.price, this.discPrice,
-      this.productUrl,this.sizes,this.colors);
+  ProductData(this.pid, this.brand,this.title, this.desc, this.price, this.discPrice,
+      this.productUrl, this.sizes, this.colors);
 }
 
 class Products {

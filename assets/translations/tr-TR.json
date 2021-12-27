@@ -35,5 +35,14 @@
     "shop": "Alışveriş",
     "bag": "Çanta",
     "favourites": "Favoriler",
-    "profile": "Profil"
+    "profile": "Profil",
+    
+
+    "fashion": "Moda",
+    "sale": "Ürünler",
+    "newTextTitle": "Yeni",
+    "newText": "YENİ",
+    "neverSeen": "Bunları daha önce görmedin",
+    "viewAllTxtBtn": "Hepsini Göster",
+    "checkBtn": "Kontrol Et"
 }

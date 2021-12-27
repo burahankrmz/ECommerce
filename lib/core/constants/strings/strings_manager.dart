@@ -45,4 +45,12 @@ class AppStrings {
   static const String favourites = "favourites";
   static const String profile = "profile";
 
+  //? HOME PAGE 1 STRINGS
+  static const String fashion = "fashion";
+  static const String sale = "sale";
+  static const String newText = "newText";
+  static const String newTextTitle = "newTextTitle";
+  static const String neverSeen = "neverSeen";
+  static const String viewAllTxtBtn = "viewAllTxtBtn";
+  static const String checkBtn = "checkBtn";
 }

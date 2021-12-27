@@ -26,6 +26,7 @@ extension ProductResponseDataMapper on ProductResponseData? {
   ProductData toDomain() {
     return ProductData(
       this?.pid?.orEmpty() ?? EMPTY,
+      this?.brand?.orEmpty() ?? EMPTY,
       this?.title?.orEmpty() ?? EMPTY,
       this?.desc?.orEmpty() ?? EMPTY,
       this?.price?.orDoubleZero() ?? DOUBLEZERO,

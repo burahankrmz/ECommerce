@@ -9,6 +9,7 @@ part of 'products_response.dart';
 ProductResponseData _$ProductResponseDataFromJson(Map<String, dynamic> json) =>
     ProductResponseData(
       json['product_id'] as String?,
+      json['brand'] as String?,
       json['title'] as String?,
       json['description'] as String?,
       (json['price'] as num?)?.toDouble(),
@@ -22,6 +23,7 @@ Map<String, dynamic> _$ProductResponseDataToJson(
         ProductResponseData instance) =>
     <String, dynamic>{
       'product_id': instance.pid,
+      'brand': instance.brand,
       'title': instance.title,
       'description': instance.desc,
       'price': instance.price,

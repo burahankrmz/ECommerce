@@ -1,6 +1,4 @@
 import 'dart:math';
-import 'package:ecommerce/app/di.dart';
-import 'package:ecommerce/core/init/network/services/firebase_services.dart';
 import 'package:ecommerce/features/main/home/view/home_page_view1.dart';
 import 'package:ecommerce/features/main/home/view/home_page_view2.dart';
 import 'package:ecommerce/features/main/home/view/home_page_view3.dart';
