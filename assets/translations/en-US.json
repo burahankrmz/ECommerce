@@ -41,5 +41,15 @@
     "newText": "NEW",
     "neverSeen": "You've never seen it before",
     "viewAllTxtBtn": "View all",
-    "checkBtn": "Check"
+    "checkBtn": "Check",
+    "myProfile": "My profile",
+    "myOrders": "My orders",
+    "shippingAdresses": "Shipping addresses",
+    "paymentMethods": "Payment methods",
+    "promocodes": "Promocodes",
+    "myReviews": "My reviews",
+    "settings": "Settings",
+    "notificationsPassword": "Notifications, password",
+    "youHavePromo": "You have special promocodes"
+
 }

@@ -27,6 +27,7 @@ extension AppHeight on BuildContext {
   double get h18 => figmaToAppHeight(18);
   double get h22 => figmaToAppHeight(22);
   double get h24 => figmaToAppHeight(24);
+  double get h28 => figmaToAppHeight(28);
   double get h32 => figmaToAppHeight(32);
   double get h33 => figmaToAppHeight(33);
   double get h34 => figmaToAppHeight(34);
@@ -69,6 +70,7 @@ extension AppWidth on BuildContext {
   double get w8 => figmaToAppWidth(8);
   double get w10 => figmaToAppWidth(10);
   double get w13 => figmaToAppWidth(13);
+  double get w15 => figmaToAppWidth(15);
   double get w16 => figmaToAppWidth(16);
   double get w18 => figmaToAppWidth(18);
   double get w32 => figmaToAppWidth(32);

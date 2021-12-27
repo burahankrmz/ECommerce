@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:ecommerce/app/di.dart';
 import 'package:ecommerce/core/constants/assets/assets_manager.dart';
 import 'package:ecommerce/core/constants/strings/strings_manager.dart';
@@ -48,31 +49,33 @@ class _HomePageView1State extends State<HomePageView1> {
   }
 
   Widget _buildContentWidget(BuildContext context) {
-    return StreamBuilder<Products>(
-      stream: _viewModel.outputProduct,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Container();
-        } else {
-          var products = snapshot.data!.productData;
-          return SafeArea(
-            child: ListView(
-              key: const PageStorageKey(0),
-              controller: _homepage1Controller,
-              children: [
-                SizedBox(
-                  height: context.h536,
-                  child: _buildFashionSaleHeader(context),
-                ),
-                SizedBox(
-                  height: context.h33,
-                ),
-                _buildProductFooter(products)
-              ],
-            ),
-          );
-        }
-      },
+    return FadeInDown(
+      child: StreamBuilder<Products>(
+        stream: _viewModel.outputProduct,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Container();
+          } else {
+            var products = snapshot.data!.productData;
+            return SafeArea(
+              child: ListView(
+                key: const PageStorageKey(0),
+                controller: _homepage1Controller,
+                children: [
+                  SizedBox(
+                    height: context.h536,
+                    child: _buildFashionSaleHeader(context),
+                  ),
+                  SizedBox(
+                    height: context.h33,
+                  ),
+                  _buildProductFooter(products)
+                ],
+              ),
+            );
+          }
+        },
+      ),
     );
   }
 

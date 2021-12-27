@@ -53,4 +53,17 @@ class AppStrings {
   static const String neverSeen = "neverSeen";
   static const String viewAllTxtBtn = "viewAllTxtBtn";
   static const String checkBtn = "checkBtn";
+
+  //? PROFILE STRINGS
+  static const String myProfile = "myProfile";
+  static const String myOrders = "myOrders";
+  static const String shippingAdresses = "shippingAdresses";
+  static const String paymentMethods = "paymentMethods";
+  static const String promocodes = "promocodes";
+  static const String myReviews = "myReviews";
+  static const String settings = "settings";
+  static const String notificationsPassword = "notificationsPassword";
+  static const String youHavePromo = "youHavePromo";
+
+
 }
