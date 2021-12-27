@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce/features/main/home/model/product_model.dart';
+import '../../../../features/main/home/model/product_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../../features/auth/login/services/login_request.dart';

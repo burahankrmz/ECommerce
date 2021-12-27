@@ -1,5 +1,5 @@
-import 'package:ecommerce/app/app_prefs.dart';
-import 'package:ecommerce/app/di.dart';
+import '../../../app/app_prefs.dart';
+import '../../../app/di.dart';
 
 class AppSize {
 

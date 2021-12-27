@@ -1,24 +1,24 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:easy_localization/easy_localization.dart';
-import '../viewmodel/login_viewmodel.dart';
-import '../../../state/state_renderer.impl.dart';
-import 'package:flutter/scheduler.dart';
-import '../../../../core/constants/values/app_sizes.dart';
-import '../../../../product/widgets/buttons/facebook_button.dart';
-import '../../../../product/widgets/buttons/google_button.dart';
-import '../../../../product/widgets/padding/custom_padding.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 
 import '../../../../app/app_prefs.dart';
 import '../../../../app/di.dart';
 import '../../../../core/constants/fonts/fonts_manager.dart';
 import '../../../../core/constants/strings/strings_manager.dart';
+import '../../../../core/constants/values/app_sizes.dart';
 import '../../../../core/init/color/color_manager.dart';
 import '../../../../core/init/routes/routes_manager.dart';
 import '../../../../core/init/styles/styles_manager.dart';
 import '../../../../core/widget/auth_elevated_button.dart';
+import '../../../../product/widgets/buttons/facebook_button.dart';
+import '../../../../product/widgets/buttons/google_button.dart';
 import '../../../../product/widgets/inputs/normal_input_field.dart';
+import '../../../../product/widgets/padding/custom_padding.dart';
+import '../../../state/state_renderer.impl.dart';
+import '../viewmodel/login_viewmodel.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);

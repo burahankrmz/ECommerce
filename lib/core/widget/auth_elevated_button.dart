@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import '../init/color/color_manager.dart';
 import '../init/styles/styles_manager.dart';
-import 'package:flutter/material.dart';
 
 typedef FutureCallBack = void Function()?;
 

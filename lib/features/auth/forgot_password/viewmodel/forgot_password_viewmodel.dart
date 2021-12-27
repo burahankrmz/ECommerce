@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:ecommerce/core/init/base/base_viewmodel.dart';
-import 'package:ecommerce/core/init/functions/functions.dart';
-import 'package:ecommerce/features/auth/forgot_password/services/forgot_password_usecase.dart';
-import 'package:ecommerce/features/state/state_renderer.dart';
-import 'package:ecommerce/features/state/state_renderer.impl.dart';
+import '../../../../core/init/base/base_viewmodel.dart';
+import '../../../../core/init/functions/functions.dart';
+import '../services/forgot_password_usecase.dart';
+import '../../../state/state_renderer.dart';
+import '../../../state/state_renderer.impl.dart';
 
 class ForgotPasswordViewModel extends BaseViewModel
     with ForgotPasswordViewModelInputs, ForgotPasswordViewModelOutputs {

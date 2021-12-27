@@ -1,7 +1,7 @@
-import 'package:ecommerce/core/extensions/context_extension.dart';
-import 'package:ecommerce/core/init/color/color_manager.dart';
-import 'package:ecommerce/core/init/styles/styles_manager.dart';
-import 'package:ecommerce/core/widget/auth_elevated_button.dart';
+import '../../../core/extensions/context_extension.dart';
+import '../../../core/init/color/color_manager.dart';
+import '../../../core/init/styles/styles_manager.dart';
+import '../../../core/widget/auth_elevated_button.dart';
 import 'package:flutter/material.dart';
 
 class ProfileListTile extends StatelessWidget {

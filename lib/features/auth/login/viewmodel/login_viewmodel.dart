@@ -2,10 +2,10 @@ import 'dart:async';
 
 import '../../../../core/init/base/base_viewmodel.dart';
 import '../../../../core/init/functions/functions.dart';
-import '../freezed_model/login_freezed_model.dart';
-import '../services/login_usecase.dart';
 import '../../../state/state_renderer.dart';
 import '../../../state/state_renderer.impl.dart';
+import '../freezed_model/login_freezed_model.dart';
+import '../services/login_usecase.dart';
 
 class LoginViewModel extends BaseViewModel
     with LoginViewModelInputs, LoginViewModelOutputs {
@@ -39,7 +39,7 @@ class LoginViewModel extends BaseViewModel
                 },
             (data) => {
                   inputState.add(ContentState()),
-                  
+
                   isUserLoggedInSuccessfullyStreamController.add(true)
                 });
   }

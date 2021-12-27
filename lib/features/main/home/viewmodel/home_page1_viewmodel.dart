@@ -1,11 +1,10 @@
 import 'dart:ffi';
 
-import 'package:ecommerce/core/init/base/base_viewmodel.dart';
-import 'package:ecommerce/features/main/home/model/product_model.dart';
-import 'package:ecommerce/features/main/home/services/usecase/home1_usecase.dart';
-import 'package:ecommerce/features/state/state_renderer.dart';
-import 'package:ecommerce/features/state/state_renderer.impl.dart';
-import 'package:flutter/material.dart';
+import '../../../../core/init/base/base_viewmodel.dart';
+import '../model/product_model.dart';
+import '../services/usecase/home1_usecase.dart';
+import '../../../state/state_renderer.dart';
+import '../../../state/state_renderer.impl.dart';
 import 'package:rxdart/subjects.dart';
 
 class HomePage1ViewModel extends BaseViewModel
@@ -26,7 +25,7 @@ class HomePage1ViewModel extends BaseViewModel
                   StateRendererType.FULL_SCREEN_ERROR_STATE, failure.message))
             },
         (products) => {
-          debugPrint(products.productData[0].desc),
+
               inputState.add(ContentState()),
               inputProduct.add(products)
             });

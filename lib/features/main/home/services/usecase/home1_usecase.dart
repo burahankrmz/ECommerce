@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce/core/init/network/failure/failure.dart';
-import 'package:ecommerce/core/init/network/repository/repository.dart';
-import 'package:ecommerce/core/init/network/usecases/base_usecase.dart';
-import 'package:ecommerce/features/main/home/model/product_model.dart';
+import '../../../../../core/init/network/failure/failure.dart';
+import '../../../../../core/init/network/repository/repository.dart';
+import '../../../../../core/init/network/usecases/base_usecase.dart';
+import '../../model/product_model.dart';
 
 class HomeUseCase implements BaseUsecase<void, Products> {
   final Repository _repository;

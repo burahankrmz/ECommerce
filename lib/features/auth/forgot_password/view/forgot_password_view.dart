@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:animate_do/animate_do.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce/core/init/routes/routes_manager.dart';
-import 'package:ecommerce/features/auth/forgot_password/viewmodel/forgot_password_viewmodel.dart';
-import 'package:ecommerce/features/state/state_renderer.impl.dart';
+import '../../../../core/init/routes/routes_manager.dart';
+import '../viewmodel/forgot_password_viewmodel.dart';
+import '../../../state/state_renderer.impl.dart';
 import '../../../../app/app_prefs.dart';
 import '../../../../app/di.dart';
 import '../../../../core/constants/strings/strings_manager.dart';

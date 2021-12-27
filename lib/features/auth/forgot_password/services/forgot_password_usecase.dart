@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce/core/init/network/failure/failure.dart';
-import 'package:ecommerce/core/init/network/repository/repository.dart';
-import 'package:ecommerce/core/init/network/usecases/base_usecase.dart';
+import '../../../../core/init/network/failure/failure.dart';
+import '../../../../core/init/network/repository/repository.dart';
+import '../../../../core/init/network/usecases/base_usecase.dart';
 
 class ForgotPasswordUseCase
     implements BaseUsecase<ForgotPasswordUseCaseInput, String> {

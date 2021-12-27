@@ -1,9 +1,9 @@
-import 'package:ecommerce/core/constants/strings/strings_manager.dart';
-import 'package:ecommerce/features/main/bag/view/bag_page_view.dart';
-import 'package:ecommerce/features/main/favourites/view/favourites_page_view.dart';
-import 'package:ecommerce/features/main/home/view/home_page_view_main.dart';
-import 'package:ecommerce/features/main/profile/view/profile_page_view.dart';
-import 'package:ecommerce/features/main/shop/view/shop_page_view.dart';
+import '../../../core/constants/strings/strings_manager.dart';
+import '../bag/view/bag_page_view.dart';
+import '../favourites/view/favourites_page_view.dart';
+import '../home/view/home_page_view_main.dart';
+import '../profile/view/profile_page_view.dart';
+import '../shop/view/shop_page_view.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 

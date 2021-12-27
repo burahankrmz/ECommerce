@@ -1,4 +1,4 @@
-import 'package:ecommerce/features/main/view/main_view.dart';
+import '../../../features/main/view/main_view.dart';
 
 import '../../../app/di.dart';
 import 'package:flutter/material.dart';

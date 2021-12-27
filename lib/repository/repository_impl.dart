@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce/core/constants/strings/strings_manager.dart';
-import 'package:ecommerce/features/main/home/model/product_model.dart';
+import '../core/constants/strings/strings_manager.dart';
+import '../features/main/home/model/product_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
 import '../core/init/network/data_source/remote_data_source.dart';
 import '../core/init/network/error_handler/error_handler.dart';
@@ -76,14 +75,10 @@ class RepositoryImpl implements Repository {
   Future<Either<Failure, Products>> getHome1Products() async {
     if (await _networkInfo.isConnected) {
       try {
-        final response = await _remoteDataSource
-            .getHome1Products()
-            .whenComplete(() => debugPrint("BASARILI"));
-            debugPrint(response.productResponseData.toString());
-        debugPrint("BURAYA GIRDIM BEN");
+        final response = await _remoteDataSource.getHome1Products();
+
         return Right(response.toDomain());
       } catch (error) {
-        debugPrint("ERRORKE");
         return Left(ErrorHandler.handle(error).failure);
       }
     }

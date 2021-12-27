@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecommerce/features/main/home/services/responses/products_response.dart';
+import '../../../../features/main/home/services/responses/products_response.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseServices {

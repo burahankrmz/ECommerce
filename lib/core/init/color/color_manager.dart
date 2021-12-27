@@ -13,6 +13,7 @@ class ColorManager {
   static Color saleHot = HexColor.fromHex("#DB3022");
   static Color black1 = HexColor.fromHex("#000000");
   static Color star = HexColor.fromHex("#FFBA49");
+  static Color transparent = HexColor.fromHex("#0000ffff") ;
 }
 
 class ColorManagerDark {

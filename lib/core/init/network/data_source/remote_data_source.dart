@@ -1,4 +1,4 @@
-import 'package:ecommerce/features/main/home/services/responses/products_response.dart';
+import '../../../../features/main/home/services/responses/products_response.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../../features/auth/login/services/login_request.dart';

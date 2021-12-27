@@ -1,4 +1,4 @@
-import 'package:ecommerce/core/init/network/mapper/mappers.dart';
+import '../init/network/mapper/mappers.dart';
 import '../init/network/mapper/mappers.dart';
 
 extension NonNullString on String? {
